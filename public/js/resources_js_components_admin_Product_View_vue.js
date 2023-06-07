@@ -11,6 +11,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../router */ "./resources/js/router.js");
+//
+//
 //
 //
 //
@@ -43,6 +46,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'View',
   data: function data() {
@@ -57,7 +61,26 @@ __webpack_require__.r(__webpack_exports__);
     getAllProducts: function getAllProducts() {
       var _this = this;
       axios.get('/api/product').then(function (res) {
+        console.log(res);
         _this.products = res.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    showUpdatePage: function showUpdatePage(id) {
+      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+        name: 'admin.product.edit',
+        params: {
+          id: id
+        }
+      });
+    },
+    deleteProduct: function deleteProduct(id) {
+      var _this2 = this;
+      axios["delete"]("/api/product/".concat(id)).then(function (res) {
+        _this2.getAllProducts();
+      })["catch"](function (error) {
+        console.log(error.response.data.errors);
       });
     }
   }
@@ -149,34 +172,64 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "tbody",
-      _vm._l(_vm.products, function (product) {
-        return _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(product.id))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(product.title))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(product.slug))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(product.price))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(product.is_active ? "Да" : "Нет"))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(product.hit ? "Да" : "Нет"))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(product.category.name))]),
-          _vm._v(" "),
-          _vm._m(1, true),
-          _vm._v(" "),
-          _vm._m(2, true),
-        ])
-      }),
-      0
-    ),
+  return _c("div", [
+    _c("table", { staticClass: "table" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.products, function (product) {
+          return _c("tr", [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(product.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.title))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.slug))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.price))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.is_active ? "Да" : "Нет"))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.hit ? "Да" : "Нет"))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.category.name))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.showUpdatePage(product.id)
+                    },
+                  },
+                },
+                [_vm._v("Изменить")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.deleteProduct(product.id)
+                    },
+                  },
+                },
+                [_vm._v("Удалить")]
+              ),
+            ]),
+          ])
+        }),
+        0
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -204,24 +257,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Удаление")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-primary" }, [
-        _vm._v("Редактировать"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Удалить")]),
     ])
   },
 ]

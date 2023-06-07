@@ -29,7 +29,10 @@ class StoreRequest extends FormRequest
             'price' => 'required|numeric',
             'preview_description' => 'required|string',
             'detail_description' => 'required|string',
-            'category_id' => 'required',
+            'category_id' => 'nullable|integer',
+            'hit' => '',
+            'is_active' => '',
+            'images' => 'nullable|array',
         ];
     }
 

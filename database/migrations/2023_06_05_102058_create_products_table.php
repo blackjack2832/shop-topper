@@ -22,9 +22,9 @@ class CreateProductsTable extends Migration
             $table->text('preview_description');
             $table->text('detail_description');
             $table->boolean('hit')->default(0);
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->index('category_id', 'product_category_idx');
-            $table->foreign('category_id', 'product_category_fk')->on('categories')->references('id');
+            $table->foreign('category_id', 'product_category_fk')->on('categories')->references('id')->onDelete('cascade');
             $table->timestamps();
 
             $table->softDeletes();

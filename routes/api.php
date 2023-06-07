@@ -19,11 +19,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Category'], function() {
-    Route::get('/categories', IndexController::class)->name('category.index');
-    Route::post('/categories', StoreController::class)->name('category.store');
+    Route::get('/category', IndexController::class);
+    Route::get('/category/{category}', ShowController::class);
+    Route::post('/category', StoreController::class);
+    Route::patch('/category/{category}', UpdateController::class);
+    Route::delete('/category/{category}', DeleteController::class);
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
     Route::get('/product', IndexController::class)->name('product.index');
+    Route::get('/product/{product}', ShowController::class)->name('product.index.id');
     Route::post('/product', StoreController::class)->name('product.store');
+    Route::patch('/product/{product}', UpdateController::class)->name('product.update');
+    Route::delete('/product/{product}', DeleteController::class)->name('product.delete');
 });

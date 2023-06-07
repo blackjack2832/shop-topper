@@ -17,10 +17,10 @@ use App\Http\Controllers\Category;
 */
 Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 })->name('index');
 
-Route::get('/admin', Main\IndexController::class)->middleware('auth')->middleware('admin')->name('admin.index');
+Route::get('/admin', Main\IndexController::class)->middleware('admin')->name('admin.index');
 
 Route::get('/admin/{page}', Main\IndexController::class)->where('page', '.*')->name('admin.index');
 

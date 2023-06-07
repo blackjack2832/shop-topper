@@ -16,11 +16,13 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->user_role_id == 1){
+        if(auth()->user() == null){
+            return redirect()->route('login');
+        }
+        if (auth()->user()->user_role_id == 1){
             return $next($request);
         }
-
-        return redirect()->route('index');
+        return response()->json(['message' => 'Это действие доступно только Администраторуx '], 401);
         
     }
 }

@@ -15,3 +15,4 @@ const adminApp = new Vue({
     },
     router
 })
+

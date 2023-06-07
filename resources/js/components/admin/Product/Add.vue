@@ -32,7 +32,6 @@
             <div class="text-danger">{{ errors.category_id[0] }}</div>
             <select v-model="category_id" class="form-control form-control-sm">
                 <option v-for="item in allCategories" :value="item.id">{{ item.title }}</option>
-                <option value="4">Тест</option>
             </select>
         </div>
         <div class="form-group form-check ml-1">
@@ -43,12 +42,16 @@
             <input v-model="hit" type="checkbox" class="form-check-input">
             <label class="form-check-label">Товар является хитом продаж</label>
         </div>
+        <div ref="dropzone" class="p-5 bg-gray">Добавьте изображения</div>
+
         <button @click.prevent="store" type="submit" class="btn btn-primary">Добавить</button>
     </div>
 </template>
 
 <script>
-import router from "../../../router";
+import router from "../../../router"
+import DropZone from "dropzone"
+
 export default {
     name: 'Add',
 
@@ -63,6 +66,7 @@ export default {
             hit: false,
             category_id: null,
             allCategories: [],
+            dropzone: null,
             errors: {
                 title: '',
                 slug: '',
@@ -76,12 +80,35 @@ export default {
 
     mounted() {
         this.getCategories();
+        this.dropzone = new DropZone(this.$refs.dropzone, {
+           url: '/',
+           autoProcessQueue: false,
+           addRemoveLinks: true,
+
+        })
+        console.log(this.allCategories)
+    },
+
+    computed: {
+        covertedHit: function() {
+            if (this.hit == true)
+                return 1
+            else
+                return 0
+        },
+
+        convertedIsActive: function () { 
+            if (this.is_active == true)
+                return 1
+            else
+                return 0
+        }
     },
 
     methods: {
         getCategories() {
-            axios.get('/api/categories').then(res => {
-                this.allCategories = res.data;
+            axios.get('/api/category').then(res => {
+                this.allCategories = res.data.data;
             })
         },
 
@@ -89,31 +116,34 @@ export default {
             for (let key in this.errors) {
                 this.errors[key] = ''
             }
-            axios.post('/api/product', {
-                title: this.title,
-                slug: this.slug,
-                price: this.price,
-                is_active: this.is_active,
-                preview_description: this.preview_description,
-                detail_description: this.detail_description,
-                hit: this.hit,
-                category_id: this.category_id
-            }).then(res => {
+
+            const data = new FormData()
+            const files = this.dropzone.getAcceptedFiles()
+            files.forEach(file => {
+                data.append('images[]', file)
+            })
+            data.append('title', this.title)
+            data.append('slug', this.slug)
+            data.append('price', this.price)
+            data.append('is_active', this.convertedIsActive)
+            data.append('preview_description', this.preview_description)
+            data.append('detail_description', this.detail_description)
+            data.append('hit', this.covertedHit)
+            data.append('category_id', this.category_id)
+
+            axios.post('/api/product', data).then(res => {
                 router.push({name: 'admin.product.view'})
             }).catch(error => {
                 for (let key in error.response.data.errors) {
                     this.errors[key] = error.response.data.errors[key]
                 }
-            })
+            })  
         }
     }
 }
 
 </script>
 <style scoped>
-.test {
-    color: red;
-}
 
 .no-resize {
     resize: none;
