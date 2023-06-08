@@ -8,5 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class AddressSliderImage extends Model
 {
     use HasFactory;
-    
 }

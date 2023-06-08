@@ -1,21 +1,5 @@
 $(function(){
 
-    let addressSlider = $('[data-slider="js-slider-store-addresses"]');
-
-    if (addressSlider !== null) {
-        $(addressSlider).slick({
-            slidesToShow: 1,
-        })
-    
-        $('.slick-prev-custom').on('click', function (e) {
-            addressSlider.slick('slickPrev')
-        });
-
-        $('.slick-next-custom').on('click', function (e) {
-            addressSlider.slick('slickNext')
-        });
-    }
-
     let detailSubslider = $('[data-slider="js-detail-subslider"]');
 
     if (detailSubslider !== null) {

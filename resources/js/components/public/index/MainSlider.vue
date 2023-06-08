@@ -1,7 +1,8 @@
 <template>
     <div class="slider-main-page" data-slider="js-slider-main-page">
-        <div v-for="image in images.images" class="slider-main-page-item">
+        <div v-for="image in images" class="slider-main-page-item">
             <img :src="image.url" alt="">
+            {{ image.url }}
         </div>
     </div>
 </template>
@@ -38,8 +39,6 @@ export default {
         getAllImages() {
             axios.get('/api/images/main-slider').then(res => {
                 this.images = res.data.data
-            }).catch(error => {
-                console.log(error)
             })
         }
     }

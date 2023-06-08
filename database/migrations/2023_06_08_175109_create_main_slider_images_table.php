@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImageTypesTable extends Migration
+class CreateMainSliderImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateImageTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_types', function (Blueprint $table) {
+        Schema::create('main_slider_images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedInteger('order');
+            $table->string('path');
+            $table->string('url');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateImageTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_types');
+        Schema::dropIfExists('main_slider_images');
     }
 }

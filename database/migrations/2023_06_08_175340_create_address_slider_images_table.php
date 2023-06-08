@@ -15,17 +15,16 @@ class CreateAddressSliderImagesTable extends Migration
     {
         Schema::create('address_slider_images', function (Blueprint $table) {
             $table->id();
-            $table->string('address')->nullable();
-            $table->string('message')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('opening_hours')->nullable();
-            $table->string('next_address_title')->nullable();
-            $table->string('back_address_title')->nullable();
-            $table->unsignedBigInteger('image_id');
+            $table->unsignedInteger('order');
+            $table->string('path');
+            $table->string('url');
+            $table->string('address');
+            $table->string('message');
+            $table->string('phone_number');
+            $table->string('opening_hours');
+            $table->string('next_address')->nullable();
+            $table->string('back_address')->nullable();
             $table->timestamps();
-            $table->softDeletes();
-            $table->index('image_id', 'asi_image_idx');
-            $table->foreign('image_id', 'asi_image_fk')->on('images')->references('id');
         });
     }
 

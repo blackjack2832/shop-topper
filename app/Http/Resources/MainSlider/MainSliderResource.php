@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Images;
+namespace App\Http\Resources\MainSlider;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ImagesResource extends JsonResource
+class MainSliderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,10 @@ class ImagesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'path' => $this->path,
-            'url' => $this->url,
-            'image_type_id' => $this->image_type_id
+           'id' => $this->id,
+           'order' => $this->order,
+           'path' => $this->path,
+           'url' => $this->url 
         ];
     }
 }

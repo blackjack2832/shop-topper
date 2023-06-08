@@ -86,7 +86,6 @@ export default {
            addRemoveLinks: true,
 
         })
-        console.log(this.allCategories)
     },
 
     computed: {

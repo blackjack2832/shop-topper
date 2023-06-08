@@ -4922,9 +4922,14 @@ __webpack_require__.r(__webpack_exports__);
   props: ['productProp'],
   data: function data() {
     return {
-      product: {},
-      cartIcon: 'http://shop-topper.loc/storage/images/icons/cart.png'
+      product: {}
     };
+  },
+  computed: {},
+  filters: {
+    format: function format(val) {
+      return "".concat(val).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
+    }
   }
 });
 
@@ -5042,43 +5047,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'MainSlider',
+  name: 'AddressSlider',
   data: function data() {
     return {
-      images: []
+      addresses: []
     };
   },
   mounted: function mounted() {
     this.getAllImages();
   },
-  updated: function updated() {},
+  updated: function updated() {
+    var addressSlider = $('[data-slider="js-slider-store-addresses"]');
+    if (addressSlider !== null) {
+      $(addressSlider).slick({
+        slidesToShow: 1
+      });
+      $('.slick-prev-custom').on('click', function (e) {
+        addressSlider.slick('slickPrev');
+      });
+      $('.slick-next-custom').on('click', function (e) {
+        addressSlider.slick('slickNext');
+      });
+    }
+  },
   methods: {
     getAllImages: function getAllImages() {
       var _this = this;
       axios.get('/api/images/address-slider').then(function (res) {
-        _this.images = res.data.data;
+        _this.addresses = res.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5101,6 +5100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var slick_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! slick-slider */ "./node_modules/slick-slider/slick/slick.js");
 /* harmony import */ var slick_slider__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(slick_slider__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -5137,8 +5137,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios.get('/api/images/main-slider').then(function (res) {
         _this.images = res.data.data;
-      })["catch"](function (error) {
-        console.log(error);
       });
     }
   }
@@ -9864,6 +9862,36 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./resources/images/cart.png":
+/*!***********************************!*\
+  !*** ./resources/images/cart.png ***!
+  \***********************************/
+/***/ ((module) => {
+
+module.exports = "/images/cart.png?bd2816222dd953709dabcda0925cf271";
+
+/***/ }),
+
+/***/ "./resources/images/svg/icon-logn-left.svg":
+/*!*************************************************!*\
+  !*** ./resources/images/svg/icon-logn-left.svg ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/icon-logn-left.svg?8aba1fcba26ecbd7fdc4dcf4c6b95c58";
+
+/***/ }),
+
+/***/ "./resources/images/svg/icon-logn-right.svg":
+/*!**************************************************!*\
+  !*** ./resources/images/svg/icon-logn-right.svg ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/icon-logn-right.svg?cb9bfcdaca3329c41743e2d505349f45";
 
 /***/ }),
 
@@ -42010,12 +42038,10 @@ var render = function () {
       "a",
       { staticClass: "catalog-element-add-to-cart", attrs: { href: "" } },
       [
-        _c("div", { staticClass: "add-to-cart-icon" }, [
-          _c("img", { attrs: { src: _vm.cartIcon, alt: "" } }),
-        ]),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "catalog-element-price" }, [
-          _vm._v(_vm._s(_vm.productProp.price) + " руб"),
+          _vm._v(_vm._s(_vm._f("format")(_vm.productProp.price)) + " руб"),
         ]),
       ]
     ),
@@ -42028,6 +42054,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "add-to-favorite-icon" }, [
       _c("img", { attrs: { src: "", alt: "" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "add-to-cart-icon" }, [
+      _c("img", {
+        attrs: { src: __webpack_require__(/*! ../../../../images/cart.png */ "./resources/images/cart.png"), alt: "" },
+      }),
     ])
   },
 ]
@@ -42060,7 +42096,10 @@ var render = function () {
       attrs: { "data-slider": "js-slider-recommended-products" },
     },
     _vm._l(_vm.products, function (product) {
-      return _c("product-cart", { attrs: { productProp: product } })
+      return _c("product-cart", {
+        key: product.id,
+        attrs: { productProp: product },
+      })
     }),
     1
   )
@@ -42088,165 +42127,123 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "slider-store-addresses",
+      attrs: { "data-slider": "js-slider-store-addresses" },
+    },
+    _vm._l(_vm.addresses, function (address) {
+      return _c("div", { staticClass: "slider-store-addresses-item" }, [
+        _c("div", { staticClass: "slider-store-img-container" }, [
+          _c("img", { attrs: { src: address.url, alt: "" } }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "slider-store-information-blocks" }, [
+          _c("div", { staticClass: "slider-store-title" }, [
+            _vm._v(_vm._s(address.message)),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "slider-store-information" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "slider-store-address slider-store-information-block",
+              },
+              [
+                _vm._v("\n                    Наш адрес: "),
+                _c("span", { staticClass: "pd-left-10" }, [
+                  _vm._v(_vm._s(address.address)),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "slider-store-phone slider-store-information-block",
+              },
+              [
+                _vm._v("\n                    Телефон: "),
+                _c("span", { staticClass: "pd-left-10" }, [
+                  _vm._v(_vm._s(address.phone_number)),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "slider-store-opening-hours slider-store-information-block",
+              },
+              [
+                _vm._v("\n                    Часы работы: "),
+                _c("span", { staticClass: "pd-left-10" }, [
+                  _vm._v(_vm._s(address.opening_hours)),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              { staticClass: "button-catalog button", attrs: { href: "" } },
+              [_vm._v("В каталог")]
+            ),
+            _vm._v(" "),
+            address.next_address !== null
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "slick-next-custom slider-store-information-block",
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: __webpack_require__(/*! ../../../../images/svg/icon-logn-right.svg */ "./resources/images/svg/icon-logn-right.svg"),
+                        alt: "",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "pd-left-10" }, [
+                      _vm._v(_vm._s(address.next_address)),
+                    ]),
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            address.back_address !== null
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "slick-prev-custom slider-store-information-block",
+                  },
+                  [
+                    _c("span", { staticClass: "pd-right-10" }, [
+                      _vm._v(_vm._s(address.back_address)),
+                    ]),
+                    _vm._v(" "),
+                    _c("img", {
+                      attrs: {
+                        src: __webpack_require__(/*! ../../../../images/svg/icon-logn-left.svg */ "./resources/images/svg/icon-logn-left.svg"),
+                        alt: "",
+                      },
+                    }),
+                  ]
+                )
+              : _vm._e(),
+          ]),
+        ]),
+      ])
+    }),
+    0
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "slider-store-addresses" }, [
-      _c("div", { staticClass: "slider-store-addresses-item" }, [
-        _c("div", { staticClass: "slider-store-img-container" }, [
-          _c("img", { attrs: { src: "", alt: "" } }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "slider-store-information-blocks" }, [
-          _c("div", { staticClass: "slider-store-title" }, [
-            _vm._v("Наш магазин на пр. Ленина"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "slider-store-information" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "slider-store-address slider-store-information-block",
-              },
-              [
-                _vm._v("\n                    Наш адрес: "),
-                _c("span", { staticClass: "pd-left-10" }, [
-                  _vm._v("пр. Ленина, 27а"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "slider-store-phone slider-store-information-block",
-              },
-              [
-                _vm._v("\n                    Телефон: "),
-                _c("span", { staticClass: "pd-left-10" }, [
-                  _vm._v("+7(999)-999-99-99"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "slider-store-opening-hours slider-store-information-block",
-              },
-              [
-                _vm._v("\n                    Часы работы: "),
-                _c("span", { staticClass: "pd-left-10" }, [
-                  _vm._v("Ежедневно с 10:00 до 21:00"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "button-catalog button", attrs: { href: "" } },
-              [_vm._v("В каталог")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "slick-next-custom slider-store-information-block",
-              },
-              [
-                _c("img", { attrs: { src: "", alt: "" } }),
-                _vm._v(" "),
-                _c("span", { staticClass: "pd-left-10" }, [_vm._v("Башня")]),
-              ]
-            ),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "slider-store-addresses-item" }, [
-        _c("div", { staticClass: "slider-store-img-container" }, [
-          _c("img", { attrs: { src: "", alt: "" } }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "slider-store-information-blocks" }, [
-          _c("div", { staticClass: "slider-store-title" }, [
-            _vm._v("Наш магазин на Башне ЧТЗ"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "slider-store-information" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "slider-store-address slider-store-information-block",
-              },
-              [
-                _vm._v("\n                    Наш адрес: "),
-                _c("span", { staticClass: "pd-left-10" }, [
-                  _vm._v("ул. Салютная, 27"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "slider-store-phone slider-store-information-block",
-              },
-              [
-                _vm._v("\n                    Телефон: "),
-                _c("span", { staticClass: "pd-left-10" }, [
-                  _vm._v("+7(999)-999-99-99"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "slider-store-opening-hours slider-store-information-block",
-              },
-              [
-                _vm._v("\n                    Часы работы: "),
-                _c("span", { staticClass: "pd-left-10" }, [
-                  _vm._v("Ежедневно с 10:00 до 21:00"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "button-catalog button", attrs: { href: "" } },
-              [_vm._v("В каталог")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "slick-prev-custom slider-store-information-block",
-              },
-              [
-                _c("span", { staticClass: "pd-right-10" }, [
-                  _vm._v("пр. Ленина"),
-                ]),
-                _c("img", { attrs: { src: "", alt: "" } }),
-              ]
-            ),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42275,9 +42272,10 @@ var render = function () {
       staticClass: "slider-main-page",
       attrs: { "data-slider": "js-slider-main-page" },
     },
-    _vm._l(_vm.images.images, function (image) {
+    _vm._l(_vm.images, function (image) {
       return _c("div", { staticClass: "slider-main-page-item" }, [
         _c("img", { attrs: { src: image.url, alt: "" } }),
+        _vm._v("\n        " + _vm._s(image.url) + "\n    "),
       ])
     }),
     0

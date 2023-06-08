@@ -61,7 +61,6 @@ __webpack_require__.r(__webpack_exports__);
     getAllProducts: function getAllProducts() {
       var _this = this;
       axios.get('/api/product').then(function (res) {
-        console.log(res);
         _this.products = res.data.data;
       })["catch"](function (error) {
         console.log(error);

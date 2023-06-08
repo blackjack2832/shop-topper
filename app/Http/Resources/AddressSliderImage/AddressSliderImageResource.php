@@ -16,11 +16,15 @@ class AddressSliderImageResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order' => $this->order,
             'path' => $this->path,
             'url' => $this->url,
             'address' => $this->address,
             'message' => $this->message,
-            'phone' => $this->phone,
+            'phone_number' => $this->phone_number,
+            'opening_hours' => $this->opening_hours,
+            'next_address' => $this->next_address,
+            'back_address' => $this->back_address,
         ];
     }
 }

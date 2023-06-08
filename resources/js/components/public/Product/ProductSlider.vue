@@ -1,6 +1,6 @@
 <template>
     <div class="slider-recommended-products-container" data-slider="js-slider-recommended-products">
-        <product-cart v-for="product in products" :productProp="product"></product-cart>
+        <product-cart v-for="product in products" v-bind:key="product.id" :productProp="product"></product-cart>
     </div>
 </template>
 

@@ -97,7 +97,6 @@ __webpack_require__.r(__webpack_exports__);
       autoProcessQueue: false,
       addRemoveLinks: true
     });
-    console.log(this.allCategories);
   },
   computed: {
     covertedHit: function covertedHit() {
