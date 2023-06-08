@@ -1,0 +1,8 @@
+.catalog-element-image{
+    object-fit: contain;
+    height: 300px;
+}
+
+.catalog-element-description{
+    height: 40px !important;
+}

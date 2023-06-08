@@ -9,13 +9,21 @@ use App\Http\Requests\Product\StoreRequest;
 use App\Models\Product;
 use App\Services\Product\Service;
 use App\Http\Resources\Product\ProductResource;
+use App\Http\Requests\Product\IndexRequest;
 
 class IndexController extends Controller
 {
 
-    public function __invoke()
+    public function __invoke(IndexRequest $request)
     {
-        $products = Product::all();
+        $data = $request->validated();
+        $query = Product::query();
+
+        if(!empty($data['hit'])){
+            $query->where('hit', $data['hit']);
+        }
+        $products = $query->get();
+        
         return ProductResource::collection($products);
     }
 }

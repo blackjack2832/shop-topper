@@ -1,28 +1,4 @@
 $(function(){
-    $('[data-slider="js-slider-main-page"]').slick({
-        slidesToShow: 1,
-        dots: true,
-        autoplay: true,
-        speed: 500
-    })
-
-    $('[data-slider="js-slider-recommended-products"]').slick({
-        slidesToShow: 4,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2
-                },
-            },
-            {
-                breakpoint: 550,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    })
 
     let addressSlider = $('[data-slider="js-slider-store-addresses"]');
 

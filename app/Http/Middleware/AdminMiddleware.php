@@ -22,7 +22,7 @@ class AdminMiddleware
         if (auth()->user()->user_role_id == 1){
             return $next($request);
         }
-        return response()->json(['message' => 'Это действие доступно только Администраторуx '], 401);
+        return redirect()->route('index');
         
     }
 }

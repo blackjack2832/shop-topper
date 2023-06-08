@@ -33,3 +33,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
     Route::patch('/product/{product}', UpdateController::class)->name('product.update');
     Route::delete('/product/{product}', DeleteController::class)->name('product.delete');
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\SiteControllers\ImageTypes'], function() {
+    Route::get('/images/{name}', IndexController::class);
+});
