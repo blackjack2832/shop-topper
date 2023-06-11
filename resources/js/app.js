@@ -9,32 +9,41 @@ import AddressSlider from "./components/public/index/AddressSlider"
 import ProductDetail from "./components/public/Product/ProductDetail"
 import ShowCatalog from "./components/public/Catalog/ShowCatalog"
 import CartMenuItem from "./components/public/Cart/CartMenuItem"
+import CatalogMenu from "./components/public/Catalog/CatalogMenu"
 
 require ('./bootstrap')
 
-const adminApp = new Vue({
-    el: '#adminApp',
+let adminPanel = $('#adminApp');
+let site = $('#app');
 
-    components: {
-        Index,
-    },
+if(adminPanel[0] !== undefined) {
+    const adminApp = new Vue({
+        el: '#adminApp',
+    
+        components: {
+            Index,
+        },
+    
+        comments: {
+            
+        },
+        router,
+    })
+}
 
-    comments: {
-        
-    },
-    router,
-})
-
-const app = new Vue({
-    el: '#app',
-
-    components: {
-        MainSlider,
-        ProductSlider,
-        AddressSlider,
-        ProductDetail,
-        ShowCatalog,
-        CartMenuItem,
-    },
-    store
-})
+if(site[0] !== undefined) {
+    const app = new Vue({
+        el: '#app',
+    
+        components: {
+            MainSlider,
+            ProductSlider,
+            AddressSlider,
+            ProductDetail,
+            ShowCatalog,
+            CartMenuItem,
+            CatalogMenu
+        },
+        store
+    })
+}

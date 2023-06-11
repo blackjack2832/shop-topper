@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="product-detail-actions-block">
-                    <a class="button-add-to-cart button black-button" href="">Добавить в корзину</a>
+                    <a @click.prevent="$store.dispatch('addToCart', {id: product.id, quantity: productQuantity})" class="button-add-to-cart button black-button" href="">Добавить в корзину</a>
                     <a class="recomended-product-add-to-favorite" href="">
                         <img src="../../../../images/favorite.png" alt="">
                     </a>

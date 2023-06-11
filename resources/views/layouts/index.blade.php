@@ -51,7 +51,7 @@
                         <div class="header-mobile-menu"></div>
                         <div class="header-menu-items">
                             <div class="header-menu-item"><a href="">О нас</a></div>
-                            <div class="header-menu-item"><a href="../sections.html">Каталог</a></div>
+                            <catalog-menu></catalog-menu>
                             <div class="header-menu-item"><a href="">Политика конфиденциальности</a></div>
                         </div>
                     </div>
