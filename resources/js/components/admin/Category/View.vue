@@ -4,6 +4,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Название</th>
+                <th scope="col">символьный код</th>
                 <th scope="col">Редакитрование</th>
                 <th scope="col">Удаление</th>
             </tr>
@@ -12,6 +13,7 @@
             <tr v-for="category in categories">
                 <th scope="row">{{ category.id }}</th>
                 <td>{{ category.title }}</td>
+                <td>{{ category.slug }}</td>
                 <td><button @click.prevent="showUpdatePage(category.id)" class="btn btn-primary">Редактировать</button></td>
                 <td><button @click.prevent="deleteCategory(category.id)" class="btn btn-danger">Уадлить</button></td>
             </tr>

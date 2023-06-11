@@ -26,6 +26,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -33,25 +36,41 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: '',
+      slug: '',
       errors: {
-        title: ''
-      }
+        title: '',
+        slug: ''
+      },
+      slugError: ''
     };
   },
   methods: {
     updateCategory: function updateCategory() {
+      var _this = this;
+      for (var key in this.errors) {
+        this.errors[key] = '';
+      }
       axios.patch("/api/category/".concat(this.$route.params.id), {
-        title: this.title
+        title: this.title,
+        slug: this.slug
       }).then(function (res) {
         _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
           name: 'admin.category.view'
         });
+      })["catch"](function (error) {
+        for (var _key in error.response.data.errors) {
+          _this.errors[_key] = error.response.data.errors[_key];
+        }
+        if (error.response.data.message !== 'The given data was invalid.') {
+          _this.slugError = error.response.data.message;
+        }
       });
     },
     getCategory: function getCategory() {
-      var _this = this;
+      var _this2 = this;
       axios.get("/api/category/".concat(this.$route.params.id)).then(function (res) {
-        _this.title = res.data.data.title;
+        _this2.title = res.data.data.title;
+        _this2.slug = res.data.data.slug;
       });
     },
     back: function back() {
@@ -83,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.test[data-v-2ffed640]{\r\n    border: 1px solid red;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.test[data-v-2ffed640] {\r\n    border: 1px solid red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -243,6 +262,36 @@ var render = function () {
               return
             }
             _vm.title = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-danger" }, [
+        _vm._v(_vm._s(_vm.errors.slug[0])),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-danger" }, [
+        _vm._v(_vm._s(_vm.slugError)),
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.slug,
+            expression: "slug",
+          },
+        ],
+        staticClass: "form-control mt-3",
+        attrs: { type: "text", placeholder: "символьный код" },
+        domProps: { value: _vm.slug },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.slug = $event.target.value
           },
         },
       }),

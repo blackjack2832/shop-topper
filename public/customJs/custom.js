@@ -1,26 +1,5 @@
 $(function(){
 
-    let detailSubslider = $('[data-slider="js-detail-subslider"]');
-
-    if (detailSubslider !== null) {
-        $(detailSubslider).slick({
-            vertical: true,
-            verticalSwiping: true,
-            slidesToShow: 8,
-            asNavFor: '.product-detail-main-slider'
-        })
-
-        $(detailSubslider).find('.slick-slide').on('click', function(e){
-            let slideId = $(this).attr('data-slick-index')
-            detailSubslider.slick('slickGoTo', slideId);
-        })
-    }
-
-    $('[data-slider="js-detail-main-slider"]').slick({
-        slidesToShow: 1,
-        asNavFor: '.product-detail-subslider'
-    })
-
     let phoneMask = new Inputmask("+9 (999) 999-99-99")
     phoneMask.mask($(".input-phone"));
 

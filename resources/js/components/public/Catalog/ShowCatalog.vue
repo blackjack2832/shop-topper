@@ -1,0 +1,70 @@
+<template>
+    <div class="catalog-section">
+        <categories></categories>
+        <div class="catalog-elements">
+            <h1 class="catalog-section-title">{{ products[0].category.name }}</h1>
+            <div class="catalog-elements-container">
+                <product-cart v-for="product in products" v-bind:key="product.id" :productProp="product"></product-cart>
+            </div>
+        </div>
+        <!--<div class="catalog-elements">
+            <h1 class="catalog-section-title">Ноутбуки</h1>
+            <div class="catalog-elements-container">
+                <div class="catalog-element" v-for="product in products">
+                    <div class="add-to-favorite-icon" @click="addToFavorite"><img src="../../../../images/favorite.png" alt=""></div>
+                    <a :href="'/product/detail/' + product.id">
+                        <img class="catalog-element-image" :src="product.images[0].url" alt="">
+                        <div class="catalog-element-title">{{ product.title }}</div>
+                        <div class="catalog-element-description">{{ product.preview_description }}</div>
+                    </a>
+                    <a class="catalog-element-add-to-cart" href="">
+                        <div class="add-to-cart-icon"><img class="" src="../../../../images/cart.png" alt=""></div>
+                        <div class="catalog-element-price">120 000руб</div>
+                    </a>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</template>
+
+<script>
+import Categories from "./Categories.vue"
+import ProductCart from "../Product/ProductCart";
+export default {
+    name: 'ShowCatalog',
+    components: {
+        Categories,
+        ProductCart
+    },
+
+    data() {
+        return {
+
+        }
+    },
+
+    mounted() {
+        let currentUrl = window.location.href
+        let category = currentUrl.split("/").reverse()[0]
+        this.$store.dispatch('getAllProductsByCategory', category)
+    },
+
+    methods: {
+        getAllProductsByCategory() {
+            let currentUrl = window.location.href
+            let category = currentUrl.split("/").reverse()[0]
+            this.$store.dispatch('getAllProductsByCategory', category)
+        },
+
+        addToFavorite() {
+            alert("Дарова");
+        }
+    },
+
+    computed: {
+        products() {
+            return this.$store.getters.products
+        }
+    }
+}
+</script>

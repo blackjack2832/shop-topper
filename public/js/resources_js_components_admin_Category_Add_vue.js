@@ -23,6 +23,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -30,9 +34,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: '',
+      slug: '',
       errors: {
-        title: ''
-      }
+        title: '',
+        slug: ''
+      },
+      slugError: ''
     };
   },
   methods: {
@@ -42,7 +49,8 @@ __webpack_require__.r(__webpack_exports__);
         this.errors[key] = '';
       }
       axios.post('/api/category', {
-        title: this.title
+        title: this.title,
+        slug: this.slug
       }).then(function (res) {
         _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
           name: 'admin.category.view'
@@ -50,6 +58,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         for (var _key in error.response.data.errors) {
           _this.errors[_key] = error.response.data.errors[_key];
+        }
+        if (error.response.data.message !== 'The given data was invalid.') {
+          _this.slugError = error.response.data.message;
         }
       });
     }
@@ -74,7 +85,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.test[data-v-7b99474a]{\r\n    border: 1px solid red;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.test[data-v-7b99474a] {\r\n    border: 1px solid red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -234,6 +245,38 @@ var render = function () {
               return
             }
             _vm.title = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c("label", [_vm._v("Введите символьный код категории")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-danger" }, [
+        _vm._v(_vm._s(_vm.slugError)),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-danger" }, [
+        _vm._v(_vm._s(_vm.errors.title[0])),
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.slug,
+            expression: "slug",
+          },
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", placeholder: "символьный код" },
+        domProps: { value: _vm.slug },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.slug = $event.target.value
           },
         },
       }),

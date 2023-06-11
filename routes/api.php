@@ -34,7 +34,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
     Route::delete('/product/{product}', DeleteController::class)->name('product.delete');
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\SiteControllers\Sliders'], function() {
-    Route::get('/images/main-slider', MainSliderController::class);
-    Route::get('/images/address-slider', AddressSliderController::class);
+Route::group(['namespace' => 'App\Http\Controllers\SiteControllers'], function() {
+    Route::get('/images/main-slider', \Sliders\MainSliderController::class);
+    Route::get('/images/address-slider', \Sliders\AddressSliderController::class);
+    Route::get('/product/detail/{product}', \ProductDetail\GetController::class);
 });

@@ -36,9 +36,9 @@
                         SHOP TOPPER
                     </a>
                     <div class="header-icons">
-                        <div class="header-icon icon-search"></a>
-                        <a href="../favorite.html" class="header-icon icon-favorite-products"></div>
-                        <a class="header-icon icon-basket" href="../cart.html"></a>
+                        <a href="" class="header-icon icon-search"></a>
+                        <a href="../favorite.html" class="header-icon icon-favorite-products"></a>
+                        <cart-menu-item></cart-menu-item>
                     </div>
                 </div>
             </div>

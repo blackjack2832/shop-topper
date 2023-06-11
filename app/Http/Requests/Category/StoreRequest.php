@@ -20,6 +20,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
+            'slug' => 'required',
         ];
     }
 
@@ -28,6 +29,7 @@ class StoreRequest extends FormRequest
         return [
             'title.required' => 'Название категории - обязательное поле',
             'title.string' => 'Название категории - строковое значение',
+            'slug.required' => 'Символьный код - обязательно значение',
         ];
     }
 }

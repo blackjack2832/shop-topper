@@ -4,6 +4,10 @@
             <label>Введите название категории</label>
             <div class="text-danger">{{ errors.title[0] }}</div>
             <input v-model="title" type="text" class="form-control" placeholder="Название">
+            <label>Введите символьный код категории</label>
+            <div class="text-danger">{{ slugError }}</div>
+            <div class="text-danger">{{ errors.title[0] }}</div>
+            <input v-model="slug" type="text" class="form-control" placeholder="символьный код">
         </div>
         <button @click.prevent="store" type="submit" class="btn btn-primary">Добавить</button>
     </div>
@@ -15,11 +19,14 @@ export default {
     name: 'Add',
 
     data() {
-        return{
+        return {
             title: '',
+            slug: '',
             errors: {
                 title: '',
-            }
+                slug: '',
+            },
+            slugError: ''
         }
     },
 
@@ -30,19 +37,24 @@ export default {
             }
             axios.post('/api/category', {
                 title: this.title,
+                slug: this.slug
             }).then(res => {
-                router.push({name: 'admin.category.view'})
+                router.push({ name: 'admin.category.view' })
             }).catch(error => {
                 for (let key in error.response.data.errors) {
                     this.errors[key] = error.response.data.errors[key]
                 }
+                if (error.response.data.message !== 'The given data was invalid.') {
+                    this.slugError = error.response.data.message
+                }
+
             })
         }
     }
 }
 </script>
 <style scoped>
-.test{
+.test {
     border: 1px solid red;
 }
 </style>

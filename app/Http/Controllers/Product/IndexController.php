@@ -22,6 +22,10 @@ class IndexController extends Controller
         if(!empty($data['hit'])){
             $query->where('hit', $data['hit']);
         }
+        if(!empty($data['category'])) {
+            $category = Category::where('slug', $data['category'])->first();
+            $query->where('category_id', $category->id);
+        }
         $products = $query->get();
         
         return ProductResource::collection($products);

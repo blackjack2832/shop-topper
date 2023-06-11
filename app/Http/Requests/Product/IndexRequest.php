@@ -25,6 +25,7 @@ class IndexRequest extends FormRequest
     {
         return [
             'hit' => 'numeric',
+            'category' => 'string',
         ];
     }
 }

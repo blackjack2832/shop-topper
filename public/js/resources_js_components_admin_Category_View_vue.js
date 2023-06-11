@@ -33,6 +33,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -168,6 +170,8 @@ var render = function () {
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(category.title))]),
           _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(category.slug))]),
+          _vm._v(" "),
           _c("td", [
             _c(
               "button",
@@ -215,6 +219,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Название")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("символьный код")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Редакитрование")]),
         _vm._v(" "),

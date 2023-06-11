@@ -6,3 +6,20 @@
 .catalog-element-description{
     height: 40px !important;
 }
+
+body{
+    background-color: #fff !important;
+}
+
+.edit-product-quantity:hover{
+    cursor: pointer;
+}
+
+
+.catalog-section{
+    margin-top: 40px;
+}
+
+.catalog-element{
+    min-width: 330px !important;
+}
