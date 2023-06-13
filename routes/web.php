@@ -36,4 +36,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Cart'], function() {
     Route::get('/cart', [\App\Http\Controllers\Cart\IndexController::class, 'getPage']);
     Route::get('/getCartItemsQuantity', [\App\Http\Controllers\Cart\IndexController::class, 'getCartItemsQuantity'])->name('cart.getQuantity');
     Route::post('/addToCart/{product}', StoreController::class)->name('cart.store');
+    Route::delete('/cart/{product}', DeleteController::class);
 });

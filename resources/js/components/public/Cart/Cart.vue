@@ -6,34 +6,35 @@
         </div>
         <div class="cart">
             <div class="cart-title page-title">КОРЗИНА</div>
-            <div class="cart-container">
+            <div class="cart-container" v-if="cart.totalQuantity != 0">
                 <div v-for="product in cart.products" class="cart-item">
                     <div class="cart-item-block-left">
-                        <img v-if="product.images[0] != undefined" class="cart-item-image" :src="product.images[0].url" alt="">
+                        <img v-if="product.images[0] != undefined" class="cart-item-image" :src="product.images[0].url"
+                            alt="">
                         <img v-else src="../../../../images/noimage.jpg" class="cart-item-image" alt="">
-                        <a href="./product-detail.html">
-                            <div class="cart-item-title">{{ product.title }}</div>
-                        </a>
+                        <div class="cart-item-title-container">
+                            <a href="./product-detail.html">
+                                <div class="cart-item-title">{{ product.title }}</div>
+                            </a>
+                            <div class="cart-item-quantity">
+                                <div class="product-detail-quantity" type="text">{{ product.quantity }}</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="cart-item-block-right">
-                        <div class="cart-item-quantity">
-                            <span class="edit-product-quantity">+</span>
-                            <div class="product-detail-quantity" type="text">{{ product.quantity }}</div>
-                            <span class="edit-product-quantity">-</span>
-                        </div>
                         <div>
                             <div class="cart-item-price">{{ product.totalPrice | format }} руб</div>
-                            <a href="" class="cart-item-remove-from-cart">Удалить</a>
+                            <a href="" @click.prevent="removeFromCart(product.id)" class="cart-item-remove-from-cart">Удалить</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="total-price-block">
+            <div v-if="cart.totalQuantity != 0" class="total-price-block">
                 <div class="total-price-key">Итого:</div>
                 <div class="total-price-value">{{ cart.totalPrice | format }} руб</div>
             </div>
         </div>
-        <div class="make-order-button-container">
+        <div v-if="cart.totalQuantity != 0" class="make-order-button-container">
             <a class="button-make-order button black-button" href="./order.html">Оформить заказ</a>
         </div>
     </div>
@@ -58,11 +59,22 @@ export default {
             axios.get('/cart/products').then(res => {
                 this.cart = res.data
             })
+        },
+
+        removeFromCart(id) {
+            axios.delete(`/cart/${id}`).then(res => {
+                this.cart = res.data
+                this.$store.dispatch('getCartItemsQuantity')
+            })
         }
     },
 
     filters: {
         format: val => `${val}`.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 '),
+    },
+
+    computed() {
+
     }
 }
 </script>

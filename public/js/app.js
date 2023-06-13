@@ -4939,6 +4939,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Cart',
@@ -4956,13 +4957,21 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/cart/products').then(function (res) {
         _this.cart = res.data;
       });
+    },
+    removeFromCart: function removeFromCart(id) {
+      var _this2 = this;
+      axios["delete"]("/cart/".concat(id)).then(function (res) {
+        _this2.cart = res.data;
+        _this2.$store.dispatch('getCartItemsQuantity');
+      });
     }
   },
   filters: {
     format: function format(val) {
       return "".concat(val).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
     }
-  }
+  },
+  computed: function computed() {}
 });
 
 /***/ }),
@@ -43169,82 +43178,99 @@ var render = function () {
     _c("div", { staticClass: "cart" }, [
       _c("div", { staticClass: "cart-title page-title" }, [_vm._v("КОРЗИНА")]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "cart-container" },
-        _vm._l(_vm.cart.products, function (product) {
-          return _c("div", { staticClass: "cart-item" }, [
-            _c("div", { staticClass: "cart-item-block-left" }, [
-              product.images[0] != undefined
-                ? _c("img", {
-                    staticClass: "cart-item-image",
-                    attrs: { src: product.images[0].url, alt: "" },
-                  })
-                : _c("img", {
-                    staticClass: "cart-item-image",
-                    attrs: {
-                      src: __webpack_require__(/*! ../../../../images/noimage.jpg */ "./resources/images/noimage.jpg"),
-                      alt: "",
-                    },
-                  }),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "./product-detail.html" } }, [
-                _c("div", { staticClass: "cart-item-title" }, [
-                  _vm._v(_vm._s(product.title)),
+      _vm.cart.totalQuantity != 0
+        ? _c(
+            "div",
+            { staticClass: "cart-container" },
+            _vm._l(_vm.cart.products, function (product) {
+              return _c("div", { staticClass: "cart-item" }, [
+                _c("div", { staticClass: "cart-item-block-left" }, [
+                  product.images[0] != undefined
+                    ? _c("img", {
+                        staticClass: "cart-item-image",
+                        attrs: { src: product.images[0].url, alt: "" },
+                      })
+                    : _c("img", {
+                        staticClass: "cart-item-image",
+                        attrs: {
+                          src: __webpack_require__(/*! ../../../../images/noimage.jpg */ "./resources/images/noimage.jpg"),
+                          alt: "",
+                        },
+                      }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "cart-item-title-container" }, [
+                    _c("a", { attrs: { href: "./product-detail.html" } }, [
+                      _c("div", { staticClass: "cart-item-title" }, [
+                        _vm._v(_vm._s(product.title)),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "cart-item-quantity" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "product-detail-quantity",
+                          attrs: { type: "text" },
+                        },
+                        [_vm._v(_vm._s(product.quantity))]
+                      ),
+                    ]),
+                  ]),
                 ]),
-              ]),
-            ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "cart-item-block-right" }, [
+                  _c("div", [
+                    _c("div", { staticClass: "cart-item-price" }, [
+                      _vm._v(
+                        _vm._s(_vm._f("format")(product.totalPrice)) + " руб"
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "cart-item-remove-from-cart",
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.removeFromCart(product.id)
+                          },
+                        },
+                      },
+                      [_vm._v("Удалить")]
+                    ),
+                  ]),
+                ]),
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.cart.totalQuantity != 0
+        ? _c("div", { staticClass: "total-price-block" }, [
+            _c("div", { staticClass: "total-price-key" }, [_vm._v("Итого:")]),
             _vm._v(" "),
-            _c("div", { staticClass: "cart-item-block-right" }, [
-              _c("div", { staticClass: "cart-item-quantity" }, [
-                _c("span", { staticClass: "edit-product-quantity" }, [
-                  _vm._v("+"),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "product-detail-quantity",
-                    attrs: { type: "text" },
-                  },
-                  [_vm._v(_vm._s(product.quantity))]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "edit-product-quantity" }, [
-                  _vm._v("-"),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("div", { staticClass: "cart-item-price" }, [
-                  _vm._v(_vm._s(_vm._f("format")(product.totalPrice)) + " руб"),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "cart-item-remove-from-cart",
-                    attrs: { href: "" },
-                  },
-                  [_vm._v("Удалить")]
-                ),
-              ]),
+            _c("div", { staticClass: "total-price-value" }, [
+              _vm._v(_vm._s(_vm._f("format")(_vm.cart.totalPrice)) + " руб"),
             ]),
           ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "total-price-block" }, [
-        _c("div", { staticClass: "total-price-key" }, [_vm._v("Итого:")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "total-price-value" }, [
-          _vm._v(_vm._s(_vm._f("format")(_vm.cart.totalPrice)) + " руб"),
-        ]),
-      ]),
+        : _vm._e(),
     ]),
     _vm._v(" "),
-    _vm._m(1),
+    _vm.cart.totalQuantity != 0
+      ? _c("div", { staticClass: "make-order-button-container" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button-make-order button black-button",
+              attrs: { href: "./order.html" },
+            },
+            [_vm._v("Оформить заказ")]
+          ),
+        ])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = [
@@ -43266,21 +43292,6 @@ var staticRenderFns = [
         "a",
         { staticClass: "breadcrumbs__item active", attrs: { href: "" } },
         [_vm._v("Корзина")]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "make-order-button-container" }, [
-      _c(
-        "a",
-        {
-          staticClass: "button-make-order button black-button",
-          attrs: { href: "./order.html" },
-        },
-        [_vm._v("Оформить заказ")]
       ),
     ])
   },

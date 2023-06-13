@@ -25,6 +25,21 @@ class Cart {
         return session()->get('cart.totalQuantity');
     }
 
+    public function removeFromCart($product) {
+        $productId = $product['id'];
+        $productFromCart = session()->get("cart.products.$productId");
+
+        if (!empty($productFromCart)) {
+            $totalPrice = session()->get('cart.totalPrice') - $productFromCart['totalPrice'];
+            $totalQuantity = session()->get('cart.totalQuantity') - $productFromCart['quantity'];
+            session()->forget("cart.products.$productId");
+            session()->put('cart.totalQuantity', $totalQuantity);
+            session()->put('cart.totalPrice', $totalPrice);
+        }
+
+        return session()->get('cart');
+    }
+
     public function getCartProducts() {
         return session()->get('cart');
     }
