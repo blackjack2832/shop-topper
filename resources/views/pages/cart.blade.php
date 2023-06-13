@@ -1,5 +1,5 @@
 @extends('layouts.index')
 
 @section('index')
-<show-catalog></show-catalog>
+<cart></cart>
 @endsection

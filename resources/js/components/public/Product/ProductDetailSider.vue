@@ -1,13 +1,23 @@
 <template>
     <div class="product-detail-slider">
-        <div class="product-detail-subslider" data-slider="js-detail-subslider">
-            <div class="detail-subslider-item" v-for="product in productProp">
+        <div v-if="productImages[0] !== undefined" class="product-detail-subslider" data-slider="js-detail-subslider">
+            <div class="detail-subslider-item" v-for="product in productImages">
                 <img :src="product.url" alt="">
             </div>
         </div>
-        <div class="product-detail-main-slider" data-slider="js-detail-main-slider">
-            <div class="detail-main-slider-item" v-for="product in productProp">
+        <div v-else class="product-detail-subslider" data-slider="js-detail-subslider">
+            <div class="detail-subslider-item">
+                <img src="../../../../images/noimage.jpg" alt="">
+            </div>
+        </div>
+        <div v-if="productImages[0] !== undefined" class="product-detail-main-slider" data-slider="js-detail-main-slider">
+            <div class="detail-main-slider-item" v-for="product in productImages">
                 <img :src="product.url" alt="">
+            </div>
+        </div>
+        <div v-else class="product-detail-main-slider" data-slider="js-detail-main-slider">
+            <div class="detail-main-slider-item">
+                <img src="../../../../images/noimage.jpg" alt="">
             </div>
         </div>
     </div>
@@ -19,16 +29,12 @@ import "slick-slider"
 export default {
     name: 'ProductDetailSider',
 
-    props: ['productProp'],
+    props: ['productImages'],
 
     data() {
         return {
-            product: {},
+
         }
-    },
-
-    mounted() {
-
     },
 
     updated() {

@@ -1,13 +1,14 @@
 <template>
-    <div class="catalog-section">
-        <categories></categories>
-        <div class="catalog-elements">
-            <h1 class="catalog-section-title">{{ products[0].category.name }}</h1>
-            <div class="catalog-elements-container">
-                <product-cart v-for="product in products" v-bind:key="product.id" :productProp="product"></product-cart>
+    <div class="container-large">
+        <div class="catalog-section">
+            <categories></categories>
+            <div class="catalog-elements">
+                <h1 class="catalog-section-title">{{ products[0].category.name }}</h1>
+                <div class="catalog-elements-container">
+                    <product-cart v-for="product in products" v-bind:key="product.id" :productProp="product"></product-cart>
+                </div>
             </div>
-        </div>
-        <!--<div class="catalog-elements">
+            <!--<div class="catalog-elements">
             <h1 class="catalog-section-title">Ноутбуки</h1>
             <div class="catalog-elements-container">
                 <div class="catalog-element" v-for="product in products">
@@ -24,6 +25,10 @@
                 </div>
             </div>
         </div>-->
+        </div>
+        <div v-if="hideButton == false" class="button-container">
+            <a href="" @click.prevent="getMore(15)" class="button black-button">Загрузить ещё</a>
+        </div>
     </div>
 </template>
 
@@ -39,32 +44,42 @@ export default {
 
     data() {
         return {
-
+            limit: 15,
+            offset: 0,
+            products: [],
+            hideButton: false
         }
     },
 
     mounted() {
-        let currentUrl = window.location.href
-        let category = currentUrl.split("/").reverse()[0]
-        this.$store.dispatch('getAllProductsByCategory', category)
+        this.getAllProductsByCategory()
     },
 
     methods: {
-        getAllProductsByCategory() {
-            let currentUrl = window.location.href
-            let category = currentUrl.split("/").reverse()[0]
-            this.$store.dispatch('getAllProductsByCategory', category)
-        },
 
         addToFavorite() {
             alert("Дарова");
+        },
+
+        getAllProductsByCategory() {
+            let currentUrl = window.location.href
+            let category = currentUrl.split("/").reverse()[0]
+            axios.get(`/api/product?category=${category}&limit=${this.limit}&offset=${this.offset}`).then(res => {
+                if (res.data === 0) {
+                    this.hideButton = true
+                } else {
+                    res.data.data.forEach(product => {
+                        this.products.push(product)
+                    });
+                }
+            })
+        },
+
+        getMore(limit) {
+            this.offset += this.limit
+            this.limit += limit
+            this.getAllProductsByCategory()
         }
     },
-
-    computed: {
-        products() {
-            return this.$store.getters.products
-        }
-    }
 }
 </script>

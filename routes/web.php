@@ -32,6 +32,8 @@ Route::get('/product/detail/{product}', ProductDetail\IndexController::class)->n
 Route::get('/catalog/{category}', Catalog\IndexController::class)->name('catalog.index');
 
 Route::group(['namespace' => 'App\Http\Controllers\Cart'], function() {
+    Route::get('/cart/products', [App\Http\Controllers\Cart\IndexController::class, 'getCartProducts']);
+    Route::get('/cart', [\App\Http\Controllers\Cart\IndexController::class, 'getPage']);
     Route::get('/getCartItemsQuantity', [\App\Http\Controllers\Cart\IndexController::class, 'getCartItemsQuantity'])->name('cart.getQuantity');
     Route::post('/addToCart/{product}', StoreController::class)->name('cart.store');
 });

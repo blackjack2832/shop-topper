@@ -1,5 +1,5 @@
 <template>
-    <a class="header-icon icon-basket header-item-basket" href="../cart.html">
+    <a class="header-icon icon-basket header-item-basket" href="/cart">
         <span>{{ cartItemsQuantity }}</span>
     </a>
 </template>

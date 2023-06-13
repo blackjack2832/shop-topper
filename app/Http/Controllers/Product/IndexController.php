@@ -22,10 +22,26 @@ class IndexController extends Controller
         if(!empty($data['hit'])){
             $query->where('hit', $data['hit']);
         }
+
         if(!empty($data['category'])) {
             $category = Category::where('slug', $data['category'])->first();
             $query->where('category_id', $category->id);
         }
+
+        $count = $query->count();
+
+        if(!empty($data['offset'])) {
+            if($data['offset'] !== 0) {
+                if($count <= $data['offset'])
+                    return 0;
+                $query->skip($data['offset']);
+            }
+        }
+
+        if(!empty($data['limit'])) {
+            $query->take($data['limit']);
+        }
+
         $products = $query->get();
         
         return ProductResource::collection($products);

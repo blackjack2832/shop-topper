@@ -9,8 +9,8 @@ const getters = {
 }
 
 const actions = {
-    getAllProductsByCategory({commit}, category) {
-        axios.get(`/api/product?category=${category}`).then(res => {
+    getAllProductsByCategory({commit}, data) {
+        axios.get(`/api/product?category=${data.category}&limit=${data.limit}&offset=${data.offset}`).then(res => {
             commit('setProducts', res.data.data)
         })
     },

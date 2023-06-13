@@ -1,6 +1,6 @@
 <template>
     <div class="product-detail">
-        <product-detail-sider :productProp="product.images"></product-detail-sider>
+        <product-detail-sider :productImages="product.images"></product-detail-sider>
         <div class="product-detail-information">
             <form action="" class="product-detail-characteristics">
                 <div class="product-detail-title-container">
@@ -49,7 +49,7 @@ export default {
 
     data() {
         return {
-            product: {},
+            product: [],
             productQuantity: 1,
         }
     },

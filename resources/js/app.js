@@ -10,6 +10,7 @@ import ProductDetail from "./components/public/Product/ProductDetail"
 import ShowCatalog from "./components/public/Catalog/ShowCatalog"
 import CartMenuItem from "./components/public/Cart/CartMenuItem"
 import CatalogMenu from "./components/public/Catalog/CatalogMenu"
+import Cart from "./components/public/Cart/Cart"
 
 require ('./bootstrap')
 
@@ -42,7 +43,8 @@ if(site[0] !== undefined) {
             ProductDetail,
             ShowCatalog,
             CartMenuItem,
-            CatalogMenu
+            CatalogMenu,
+            Cart
         },
         store
     })

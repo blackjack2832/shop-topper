@@ -18,7 +18,7 @@ const actions = {
         axios.post(state.addToCartLink + data.id, {
             'quantity' : data.quantity
         }).then(res => {
-            commit('setCartItemsQuantity', res.data)
+           commit('setCartItemsQuantity', res.data)
         })
     },
 

@@ -9,12 +9,10 @@ use Illuminate\Contracts\Session\Session;
 use function PHPUnit\Framework\returnSelf;
 
 class Cart {
-    
-    protected $product = [];
 
-    public function addToCartUnauthorizedUser(Product $product, $quantity = 1) {
-        //session()->forget('cart');
+    public function addToCartUnauthorizedUser($product1, $quantity = 1) {
         $quantity = trim($quantity);
+        $product = $product1;
         $product['quantity'] = $quantity;
         $productPrice = $product['price'];
         $products = session()->get('cart.products');
@@ -66,4 +64,5 @@ class Cart {
 
         session()->put("cart.products.$productId", $product);
     }
+
 }

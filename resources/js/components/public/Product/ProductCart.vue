@@ -2,7 +2,8 @@
     <div class="catalog-element">
         <a :href="productDetailLink">
             <div class="add-to-favorite-icon" @click="addToFavorite"><img src="../../../../images/favorite.png" alt=""></div>
-            <img class="catalog-element-image" :src="productProp.images[0].url" alt="">
+            <img v-if="productProp.images[0] != undefined" class="catalog-element-image" :src="productProp.images[0].url" alt="">
+            <img v-else class="catalog-element-image" src="../../../../images/noimage.jpg" alt="">
             <div class="catalog-element-title">{{ productProp.title }}</div>
             <div class="catalog-element-description">{{ productProp.preview_description }}</div>
             <div class="add-to-favorite-icon"><img src="" alt=""></div>
@@ -15,7 +16,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'ProductCart',
 
@@ -24,7 +24,7 @@ export default {
     data() {
         return {
             product: {},
-            productDetailLink : ''
+            productDetailLink : '',
         }
     },
 

@@ -22,7 +22,6 @@ export default {
     methods : {
         getCategory() {
             axios.get('/api/category?first=1').then(res => {
-                console.log(res)
                 this.catalogLink += res.data.data[0].slug
             })
         }

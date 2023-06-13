@@ -39,3 +39,4 @@ Route::group(['namespace' => 'App\Http\Controllers\SiteControllers'], function()
     Route::get('/images/address-slider', \Sliders\AddressSliderController::class);
     Route::get('/product/detail/{product}', \ProductDetail\GetController::class);
 });
+

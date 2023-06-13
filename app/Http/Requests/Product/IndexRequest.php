@@ -26,6 +26,8 @@ class IndexRequest extends FormRequest
         return [
             'hit' => 'numeric',
             'category' => 'string',
+            'limit' => 'integer',
+            'offset' => 'integer',
         ];
     }
 }
