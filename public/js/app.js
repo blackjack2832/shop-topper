@@ -5174,7 +5174,7 @@ __webpack_require__.r(__webpack_exports__);
       var currentUrl = window.location.href;
       var category = currentUrl.split("/").reverse()[0];
       axios.get("/api/product?category=".concat(category, "&limit=").concat(this.limit, "&offset=").concat(this.offset)).then(function (res) {
-        if (res.data.products == 0) {
+        if (res.data == 0) {
           _this.hideButton = true;
         } else {
           res.data.products.forEach(function (product) {

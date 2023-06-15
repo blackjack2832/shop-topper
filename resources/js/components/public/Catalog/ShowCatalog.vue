@@ -66,7 +66,7 @@ export default {
             let currentUrl = window.location.href
             let category = currentUrl.split("/").reverse()[0]
             axios.get(`/api/product?category=${category}&limit=${this.limit}&offset=${this.offset}`).then(res => {
-                if (res.data.products == 0) {
+                if (res.data == 0) {
                     this.hideButton = true
                 } else {
                     res.data.products.forEach(product => {
