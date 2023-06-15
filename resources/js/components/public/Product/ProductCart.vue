@@ -1,7 +1,7 @@
 <template>
     <div class="catalog-element">
         <a :href="productDetailLink">
-            <div class="add-to-favorite-icon" @click="addToFavorite"><img src="../../../../images/favorite.png" alt=""></div>
+            <div class="add-to-favorite-icon"><img src="../../../../images/favorite.png" alt=""></div>
             <img v-if="productProp.images[0] != undefined" class="catalog-element-image" :src="productProp.images[0].url" alt="">
             <img v-else class="catalog-element-image" src="../../../../images/noimage.jpg" alt="">
             <div class="catalog-element-title">{{ productProp.title }}</div>

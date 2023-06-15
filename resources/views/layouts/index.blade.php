@@ -47,14 +47,7 @@
                     <div class="header-contacts">
                         <a href="tel:+79999999999" class="header-contacts-phone">+ 7(999)-999-99-99</a>
                     </div>
-                    <div class="header-menu">
-                        <div class="header-mobile-menu"></div>
-                        <div class="header-menu-items">
-                            <div class="header-menu-item"><a href="">О нас</a></div>
-                            <div class="header-menu-item"><a href="/catalog">Каталог</a></div>
-                            <div class="header-menu-item"><a href="">Политика конфиденциальности</a></div>
-                        </div>
-                    </div>
+                    <header-menu></header-menu>
                 </div>
             </div>
         </header>
