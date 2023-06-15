@@ -44725,7 +44725,10 @@ var render = function () {
             _vm._v(" "),
             _c(
               "a",
-              { staticClass: "button-catalog button", attrs: { href: "" } },
+              {
+                staticClass: "button-catalog button",
+                attrs: { href: "/catalog" },
+              },
               [_vm._v("В каталог")]
             ),
             _vm._v(" "),

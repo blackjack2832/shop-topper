@@ -16,7 +16,7 @@
                     <div class="slider-store-opening-hours slider-store-information-block">
                         Часы работы: <span class="pd-left-10">{{ address.opening_hours }}</span>
                     </div>
-                    <a class="button-catalog button" href="">В каталог</a>
+                    <a class="button-catalog button" href="/catalog">В каталог</a>
                     <div v-if="address.next_address !== null" class="slick-next-custom slider-store-information-block">
                         <img src="../../../../images/svg/icon-logn-right.svg" alt="">
                         <span class="pd-left-10">{{ address.next_address }}</span>
