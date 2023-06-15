@@ -62,7 +62,7 @@ class Service{
             $filePath = Storage::disk('public')->putFileAs('/images', $image, $name);
             ProductImage::create([
                 'path' => $filePath,
-                'url' => url('/storage/' . $filePath),
+                'url' => url('/storage/app/public/' . $filePath),
                 'product_id' => $productId
             ]);
         }
