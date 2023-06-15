@@ -45,17 +45,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'View',
   data: function data() {
     return {
-      products: []
+      products: [],
+      categories: [],
+      selectedCategory: 'отсортировать по категории'
     };
   },
   mounted: function mounted() {
     this.getAllProducts();
+    this.getAllCategories();
   },
   methods: {
     getAllProducts: function getAllProducts() {
@@ -80,6 +95,27 @@ __webpack_require__.r(__webpack_exports__);
         _this2.getAllProducts();
       })["catch"](function (error) {
         console.log(error.response.data.errors);
+      });
+    },
+    getAllCategories: function getAllCategories() {
+      var _this3 = this;
+      axios.get('/api/category').then(function (res) {
+        _this3.categories = res.data.data;
+      });
+    },
+    selectCategory: function selectCategory(title, slug) {
+      if (title == 'Отменить') {
+        this.getAllProducts();
+        this.selectedCategory = 'отсортировать по категории';
+      } else {
+        this.getAllProductsByCategory(slug);
+        this.selectedCategory = title;
+      }
+    },
+    getAllProductsByCategory: function getAllProductsByCategory(slug) {
+      var _this4 = this;
+      axios.get("/api/product?category=".concat(slug)).then(function (res) {
+        _this4.products = res.data.products;
       });
     }
   }
@@ -172,6 +208,71 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "dropdown" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary dropdown-toggle",
+          attrs: {
+            type: "button",
+            id: "dropdownMenuButton",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false",
+          },
+        },
+        [
+          _vm._v(
+            "\n            " + _vm._s(this.selectedCategory) + "\n        "
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu",
+          attrs: { "aria-labelledby": "dropdownMenuButton" },
+        },
+        [
+          _vm._l(_vm.categories, function (category) {
+            return _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "#" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.selectCategory(category.title, category.slug)
+                  },
+                },
+              },
+              [_vm._v(_vm._s(category.title))]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-item",
+              attrs: { href: "#" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.selectCategory("Отменить", "")
+                },
+              },
+            },
+            [_vm._v("Отменить")]
+          ),
+        ],
+        2
+      ),
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c("table", { staticClass: "table" }, [
       _vm._m(0),
       _vm._v(" "),

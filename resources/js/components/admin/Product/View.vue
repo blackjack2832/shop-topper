@@ -1,5 +1,17 @@
 <template>
     <div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{ this.selectedCategory }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" @click.prevent="selectCategory(category.title, category.slug)"
+                    v-for="category in categories" href="#">{{ category.title }}</a>
+                <a class="dropdown-item" @click.prevent="selectCategory('Отменить', '')" href="#">Отменить</a>
+            </div>
+        </div>
+        <br>
         <table class="table">
             <thead>
                 <tr>
@@ -38,12 +50,15 @@ export default {
 
     data() {
         return {
-            products: []
+            products: [],
+            categories: [],
+            selectedCategory: 'отсортировать по категории',
         }
     },
 
     mounted() {
         this.getAllProducts()
+        this.getAllCategories()
     },
 
     methods: {
@@ -67,7 +82,30 @@ export default {
                 .catch(error => {
                     console.log(error.response.data.errors);
                 })
-        }
+        },
+
+        getAllCategories() {
+            axios.get('/api/category').then(res => {
+                this.categories = res.data.data
+            })
+        },
+
+        selectCategory(title, slug) {
+            if (title == 'Отменить') {
+                this.getAllProducts()
+                this.selectedCategory = 'отсортировать по категории'
+            }
+            else {
+                this.getAllProductsByCategory(slug)
+                this.selectedCategory = title
+            }
+        },
+
+        getAllProductsByCategory(slug) {
+            axios.get(`/api/product?category=${slug}`).then(res => {
+                this.products = res.data.products
+            })
+        },
     }
 }
 </script>
