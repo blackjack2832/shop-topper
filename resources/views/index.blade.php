@@ -1,5 +1,6 @@
 @extends('layouts.index')
 
+@section('title', 'shop-topper')
 @section('index')
 <main-slider></main-slider>
 <div class="container">

@@ -11,6 +11,9 @@ import ShowCatalog from "./components/public/Catalog/ShowCatalog"
 import CartMenuItem from "./components/public/Cart/CartMenuItem"
 import CatalogMenu from "./components/public/Catalog/CatalogMenu"
 import Cart from "./components/public/Cart/Cart"
+import MakeOrder from "./components/public/Order/MakeOrder"
+import Login from "./components/public/User/Login"
+import Registration from "./components/public/User/Registration"
 
 require ('./bootstrap')
 
@@ -44,7 +47,10 @@ if(site[0] !== undefined) {
             ShowCatalog,
             CartMenuItem,
             CatalogMenu,
-            Cart
+            Cart,
+            MakeOrder,
+            Login,
+            Registration
         },
         store
     })

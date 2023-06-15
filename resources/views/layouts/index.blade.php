@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('customJs/jqurey.js') }}" defer></script>
@@ -36,7 +36,7 @@
                         SHOP TOPPER
                     </a>
                     <div class="header-icons">
-                        <a href="" class="header-icon icon-search"></a>
+                        <a href="" class="header-icon icon-user"></a>
                         <a href="../favorite.html" class="header-icon icon-favorite-products"></a>
                         <cart-menu-item></cart-menu-item>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="header-mobile-menu"></div>
                         <div class="header-menu-items">
                             <div class="header-menu-item"><a href="">О нас</a></div>
-                            <catalog-menu></catalog-menu>
+                            <div class="header-menu-item"><a href="/catalog">Каталог</a></div>
                             <div class="header-menu-item"><a href="">Политика конфиденциальности</a></div>
                         </div>
                     </div>
@@ -65,9 +65,9 @@
             <div class="container">
                 <div class="footer-social-networks-title">Мы в социальных сетях</div>
                 <div class="footer-social-networks-block">
-                    <!--<a href="" class="social-network-block"><img src="../img/svg/vk.svg" alt=""></a>
+                    <a href="" class="social-network-block"><img src="../img/svg/vk.svg" alt=""></a>
                     <a href="" class="social-network-block"><img src="../img/svg/zen.svg" alt=""></a>
-                    <a href="" class="social-network-block"><img src="../img/svg/telegram.svg" alt=""></a>-->
+                    <a href="" class="social-network-block"><img src="../img/svg/telegram.svg" alt=""></a>
                 </div>
             </div>
         </footer>

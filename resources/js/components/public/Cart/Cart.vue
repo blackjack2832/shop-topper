@@ -13,10 +13,11 @@
                             alt="">
                         <img v-else src="../../../../images/noimage.jpg" class="cart-item-image" alt="">
                         <div class="cart-item-title-container">
-                            <a href="./product-detail.html">
+                            <a :href="'/product/detail/' + product.id">
                                 <div class="cart-item-title">{{ product.title }}</div>
                             </a>
                             <div class="cart-item-quantity">
+                                <span>Кол-во: </span>
                                 <div class="product-detail-quantity" type="text">{{ product.quantity }}</div>
                             </div>
                         </div>
@@ -34,8 +35,8 @@
                 <div class="total-price-value">{{ cart.totalPrice | format }} руб</div>
             </div>
         </div>
-        <div v-if="cart.totalQuantity != 0" class="make-order-button-container">
-            <a class="button-make-order button black-button" href="./order.html">Оформить заказ</a>
+        <div v-if="cart.totalQuantity != 0 && page != 'order'" class="make-order-button-container">
+            <a class="button-make-order button black-button" href="/order">Оформить заказ</a>
         </div>
     </div>
 </template>
@@ -46,11 +47,14 @@ export default {
 
     data() {
         return {
-            cart: []
+            cart: [],
+            page: ''
         }
     },
 
     mounted() {
+        let currentUrl = window.location.href
+        this.page = currentUrl.split("/").reverse()[0]
         this.getCartProducts()
     },
 

@@ -26,6 +26,7 @@ class IndexController extends Controller
         if(!empty($data['category'])) {
             $category = Category::where('slug', $data['category'])->first();
             $query->where('category_id', $category->id);
+            $result['category'] = $category;
         }
 
         $count = $query->count();
@@ -43,7 +44,12 @@ class IndexController extends Controller
         }
 
         $products = $query->get();
-        
-        return ProductResource::collection($products);
+
+        if(!empty($products))
+            $result['products'] = ProductResource::collection($products);
+        else
+            $result['products'] = 0;
+
+        return $result;
     }
 }

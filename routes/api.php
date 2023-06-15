@@ -40,3 +40,6 @@ Route::group(['namespace' => 'App\Http\Controllers\SiteControllers'], function()
     Route::get('/product/detail/{product}', \ProductDetail\GetController::class);
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
+    Route::post('/registration', Registration\StoreController::class);
+});

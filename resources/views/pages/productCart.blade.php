@@ -1,5 +1,6 @@
 @extends('layouts.index')
 
+@section('title', 'Товар')
 @section('index')
 <div class="container">
     <product-detail></product-detail>

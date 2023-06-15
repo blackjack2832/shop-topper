@@ -5,12 +5,18 @@ namespace App\Http\Controllers\SiteControllers\Catalog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AddressSliderImage;
+use App\Models\Category;
 use App\Models\Product;
 
 class IndexController extends Controller
 {
-    public function __invoke(Product $product)
+    public function __invoke()
     {
-        return view('pages.catalog');
+        $section = Category::all()->first();
+
+        if(empty($section)) 
+            return redirect()->route('index');
+        
+        return redirect()->route('catalog.section', ['category' => $section['slug']]);
     }
 }

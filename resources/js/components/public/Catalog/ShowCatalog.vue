@@ -3,7 +3,7 @@
         <div class="catalog-section">
             <categories></categories>
             <div class="catalog-elements">
-                <h1 class="catalog-section-title">{{ products[0].category.name }}</h1>
+                <h1 class="catalog-section-title">{{ category }}</h1>
                 <div class="catalog-elements-container">
                     <product-cart v-for="product in products" v-bind:key="product.id" :productProp="product"></product-cart>
                 </div>
@@ -47,7 +47,8 @@ export default {
             limit: 15,
             offset: 0,
             products: [],
-            hideButton: false
+            hideButton: false,
+            category: '',
         }
     },
 
@@ -65,13 +66,15 @@ export default {
             let currentUrl = window.location.href
             let category = currentUrl.split("/").reverse()[0]
             axios.get(`/api/product?category=${category}&limit=${this.limit}&offset=${this.offset}`).then(res => {
-                if (res.data === 0) {
+                if (res.data.products == 0) {
                     this.hideButton = true
                 } else {
-                    res.data.data.forEach(product => {
+                    res.data.products.forEach(product => {
                         this.products.push(product)
                     });
                 }
+                
+                this.category = res.data.category.title
             })
         },
 

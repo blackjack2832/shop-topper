@@ -24,7 +24,7 @@ export default {
     methods: {
         getProduct() {
             axios.get('/api/product?hit=1').then(res => {
-                this.products = res.data.data
+                this.products = res.data.products
             }).then(error => {
                 console.log(error);
             })

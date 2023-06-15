@@ -49,7 +49,7 @@ export default {
     methods: {
         getAllProducts() {
             axios.get('/api/product').then(res => {
-                this.products = res.data.data;
+                this.products = res.data.products;
             }).catch(error => {
                 console.log(error)
             })
