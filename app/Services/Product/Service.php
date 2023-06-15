@@ -59,7 +59,7 @@ class Service{
     protected function createImages($images, $productId) {
         foreach ($images as $image) {
             $name = md5(Carbon::now() . '_' . $image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
-            $filePath = Storage::disk('public')->putFileAs('/app/public/images', $image, $name);
+            $filePath = Storage::disk('public')->putFileAs('/images', $image, $name);
             ProductImage::create([
                 'path' => $filePath,
                 'url' => url('/storage/' . $filePath),
