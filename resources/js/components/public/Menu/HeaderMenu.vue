@@ -2,7 +2,7 @@
     <div class="header-menu">
         <div @click.prevent="clickMobileMenu" class="header-mobile-menu"></div>
         <div v-bind:class="[headerMenuClass, active]">
-            <div class="header-menu-item"><a href="">О нас</a></div>
+            <div class="header-menu-item"><a href="/about">О нас</a></div>
             <div class="header-menu-item"><a href="/catalog">Каталог</a></div>
             <div class="header-menu-item"><a href="">Политика конфиденциальности</a></div>
         </div>

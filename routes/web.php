@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Category;
 use App\Http\Controllers\SiteControllers\ProductDetail;
 use App\Http\Controllers\SiteControllers\Catalog;
+use Illuminate\Support\Facades\App;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,3 +49,5 @@ Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
     Route::get('/enter', Enter\IndexController::class);
     Route::get('/registration', Registration\IndexController::class);
 });
+
+Route::get('/about', \App\Http\Controllers\SiteControllers\About\IndexController::class);

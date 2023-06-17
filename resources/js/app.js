@@ -4,7 +4,7 @@ import router from "./router"
 import Index from "./components/admin/Index"
 import MainSlider from "./components/public/index/MainSlider"
 import ProductSlider from "./components/public/Product/ProductSlider"
-import ProductCart from "./components/public/Product/ProductCart"
+import About from "./components/public/index/About"
 import AddressSlider from "./components/public/index/AddressSlider"
 import ProductDetail from "./components/public/Product/ProductDetail"
 import ShowCatalog from "./components/public/Catalog/ShowCatalog"
@@ -50,7 +50,8 @@ if(site[0] !== undefined) {
             MakeOrder,
             Login,
             Registration,
-            HeaderMenu
+            HeaderMenu,
+            About,
         },
         store
     })
