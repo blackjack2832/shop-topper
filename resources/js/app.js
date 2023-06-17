@@ -7,6 +7,7 @@ import ProductSlider from "./components/public/Product/ProductSlider"
 import About from "./components/public/index/About"
 import AddressSlider from "./components/public/index/AddressSlider"
 import ProductDetail from "./components/public/Product/ProductDetail"
+import ProductCart from "./components/public/Product/ProductCart"
 import ShowCatalog from "./components/public/Catalog/ShowCatalog"
 import CartMenuItem from "./components/public/Cart/CartMenuItem"
 import Cart from "./components/public/Cart/Cart"
@@ -52,6 +53,7 @@ if(site[0] !== undefined) {
             Registration,
             HeaderMenu,
             About,
+            ProductCart
         },
         store
     })

@@ -27,14 +27,14 @@ Route::get('/admin', Main\IndexController::class)->middleware('admin')->name('ad
 
 Route::get('/admin/{page}', Main\IndexController::class)->where('page', '.*')->name('admin.index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::get('/product/detail/{product}', ProductDetail\IndexController::class)->name('product.detail');
 Route::get('/catalog', Catalog\IndexController::class)->name('catalog.index');
 Route::get('/catalog/{category}', Catalog\SectionController::class)->name('catalog.section');
 
 Route::group(['namespace' => 'App\Http\Controllers\Cart'], function() {
-    Route::get('/cart/products', [App\Http\Controllers\Cart\IndexController::class, 'getCartProducts']);
+    Route::get('/cart/products', [\App\Http\Controllers\Cart\IndexController::class, 'getCartProducts']);
     Route::get('/cart', [\App\Http\Controllers\Cart\IndexController::class, 'getPage']);
     Route::get('/getCartItemsQuantity', [\App\Http\Controllers\Cart\IndexController::class, 'getCartItemsQuantity'])->name('cart.getQuantity');
     Route::post('/addToCart/{product}', StoreController::class)->name('cart.store');

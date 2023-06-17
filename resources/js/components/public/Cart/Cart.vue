@@ -76,9 +76,5 @@ export default {
     filters: {
         format: val => `${val}`.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 '),
     },
-
-    computed() {
-
-    }
 }
 </script>
