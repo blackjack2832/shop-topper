@@ -44883,14 +44883,50 @@ var render = function () {
           },
           [
             _c("h2", { staticClass: "about-item-title" }, [
-              _vm._v("Наш магазин на пр. Ленина"),
+              _vm._v(_vm._s(address.message)),
             ]),
             _vm._v(" "),
-            _vm._m(0, true),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "slider-store-address slider-store-information-block",
+              },
+              [
+                _vm._v("\n                Наш адрес: "),
+                _c("span", { staticClass: "pd-left-10" }, [
+                  _vm._v(_vm._s(address.address)),
+                ]),
+              ]
+            ),
             _vm._v(" "),
-            _vm._m(1, true),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "slider-store-phone slider-store-information-block",
+              },
+              [
+                _vm._v("\n                Телефон: "),
+                _c("span", { staticClass: "pd-left-10" }, [
+                  _vm._v(_vm._s(address.phone_number)),
+                ]),
+              ]
+            ),
             _vm._v(" "),
-            _vm._m(2, true),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "slider-store-opening-hours slider-store-information-block",
+              },
+              [
+                _vm._v("\n                Часы работы: "),
+                _c("span", { staticClass: "pd-left-10" }, [
+                  _vm._v(_vm._s(address.opening_hours)),
+                ]),
+              ]
+            ),
           ]
         ),
       ])
@@ -44898,54 +44934,7 @@ var render = function () {
     0
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "slider-store-address slider-store-information-block" },
-      [
-        _vm._v("\n                Наш адрес: "),
-        _c("span", { staticClass: "pd-left-10" }, [_vm._v("пр. Ленина, 27а")]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "slider-store-phone slider-store-information-block" },
-      [
-        _vm._v("\n                Телефон: "),
-        _c("span", { staticClass: "pd-left-10" }, [
-          _vm._v("+7(999)-999-99-99"),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "slider-store-opening-hours slider-store-information-block",
-      },
-      [
-        _vm._v("\n                Часы работы: "),
-        _c("span", { staticClass: "pd-left-10" }, [
-          _vm._v("Ежедневно с 10:00 до 21:00"),
-        ]),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

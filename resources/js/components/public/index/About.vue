@@ -5,15 +5,15 @@
                 <img :src="address.url" alt="">
             </div>
             <div :class="['about-item-info', address.id % 2 == 0 ? 'flex-order-1' : 'flex-order-2']">
-                <h2 class="about-item-title">Наш магазин на пр. Ленина</h2>
+                <h2 class="about-item-title">{{ address.message }}</h2>
                 <div class="slider-store-address slider-store-information-block">
-                    Наш адрес: <span class="pd-left-10">пр. Ленина, 27а</span>
+                    Наш адрес: <span class="pd-left-10">{{ address.address }}</span>
                 </div>
                 <div class="slider-store-phone slider-store-information-block">
-                    Телефон: <span class="pd-left-10">+7(999)-999-99-99</span>
+                    Телефон: <span class="pd-left-10">{{ address.phone_number }}</span>
                 </div>
                 <div class="slider-store-opening-hours slider-store-information-block">
-                    Часы работы: <span class="pd-left-10">Ежедневно с 10:00 до 21:00</span>
+                    Часы работы: <span class="pd-left-10">{{ address.opening_hours }}</span>
                 </div>
             </div>
         </div>
