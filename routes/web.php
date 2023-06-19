@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/admin', Main\IndexController::class)->middleware('admin')->name('admin.index');
 
-Route::get('/admin/{page}', Main\IndexController::class)->where('page', '.*')->name('admin.index');
+Route::get('/admin/{page}', Main\IndexController::class)->where('page', '.*');
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
