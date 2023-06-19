@@ -27,3 +27,9 @@ body{
 .catalog-element-title{
     padding: 0px 5px;
 }
+
+.order-danger{
+    margin-top: 10px;
+    padding: 0px 0px 0px 2px;
+    color: red;
+}

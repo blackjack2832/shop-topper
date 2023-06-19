@@ -3,48 +3,88 @@
         <div class="order-form-container">
             <h1 class="order-title">Оформление заказа</h1>
             <div class="order-input-container">
-                <input type="text">
+                <input v-model="first_name" type="text">
                 <label for="">Ваше имя</label>
+                <div class="order-danger">{{errors.first_name[0]}}</div>
             </div>
             <div class="order-input-container">
-                <input type="text">
+                <input v-model="last_name" type="text">
                 <label for="">Ваша фамилия</label>
+                <div class="order-danger">{{errors.last_name[0]}}</div>
             </div>
             <div class="order-input-container">
-                <input class="input-phone" type="text">
+                <input v-model="phone_number" class="input-phone" type="text">
                 <label for="">Номер телефона</label>
+                <div class="order-danger">{{errors.phone_number[0]}}</div>
             </div>
             <div class="order-input-container">
-                <input type="text">
+                <input v-model="email" type="text">
                 <label for="">Ваш e-mail адрес</label>
+                <div class="order-danger">{{errors.email[0]}}</div>
             </div>
-          <!--<div class="order-input-container radio">
-                <label for="order_pay_online">
-                    <input id="order_pay_online" name="order_pay" type="radio" value="online">
-                    <span>Оплата онлайн</span>
-                </label>
-                <label for="order_pay_offline">
-                    <input id="order_pay_offline" name="order_pay" type="radio" value="online">
-                    <span>Оплата на месте</span>
-                </label>
-            </div>-->
             <div class="order-input-container">
-                <textarea type="text"></textarea>
+                <textarea v-model="comment" type="text"></textarea>
                 <label for="">Комментарий к заказу</label>
             </div>
-            <div class="order-input-container">
-                <input class="order-input-promo-code" type="text">
-                <label for="">введите промокод</label>
-            </div>
             <div class="make-order-button-container">
-                <a class="button-make-order button black-button" href="./order.html">Оформить заказ</a>
+                <a @click.prevent="store" class="button-make-order button black-button" href="">Оформить заказ</a>
             </div>
         </div>
     </form>
 </template>
 
 <script>
+import "inputmask";
+
 export default {
     name: 'MakeOrder',
+
+    data() {
+        return {
+            email: '',
+            first_name: '',
+            last_name: '',
+            comment: '',
+            phone_number: '',
+            errors: {
+                email: '',
+                first_name: '',
+                last_name: '',
+                comment: '',
+                phone_number: '',
+            }
+        }
+    },
+
+    mounted() {
+        let phoneMask = new Inputmask("+9 (999) 999-99-99")
+        phoneMask.mask($(".input-phone"));
+    },
+
+    methods: {
+        store() {
+            for (let key in this.errors) {
+                this.errors[key] = ''
+            }
+
+            axios.post('/order', {
+                email: this.email,
+                first_name: this.first_name,
+                last_name: this.last_name,
+                comment: this.comment,
+                phone_number: this.phone_number
+            }).then(res => {
+                let orderId = res.data.id
+                if (orderId != 0) {
+                    window.location.href = `/order/${orderId}`
+                }
+            }).catch(err => {
+                console.log(err)
+                for (let key in err.response.data.errors) {
+                    this.errors[key] = err.response.data.errors[key]
+                }
+            })
+        }
+    }
 }
 </script>

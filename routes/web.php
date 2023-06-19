@@ -42,7 +42,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Cart'], function() {
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Order'], function() {
-    Route::get('/order', IndexController::class);
+    Route::get('/order/{order}', \ShowController::class)->name('order.result');
+    Route::get('/order', \IndexController::class);
+    Route::post('/order', \StoreController::class);
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
