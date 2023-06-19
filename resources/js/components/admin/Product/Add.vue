@@ -57,14 +57,14 @@ export default {
 
     data() {
         return {
-            title: null,
-            slug: null,
-            price: null,
+            title: '',
+            slug: '',
+            price: '',
             is_active: true,
-            preview_description: null,
-            detail_description: null,
+            preview_description: '',
+            detail_description: '',
             hit: false,
-            category_id: null,
+            category_id: '',
             allCategories: [],
             dropzone: null,
             errors: {
@@ -129,14 +129,13 @@ export default {
             data.append('detail_description', this.detail_description)
             data.append('hit', this.covertedHit)
             data.append('category_id', this.category_id)
-
             axios.post('/api/product', data).then(res => {
                 router.push({name: 'admin.product.view'})
             }).catch(error => {
                 for (let key in error.response.data.errors) {
                     this.errors[key] = error.response.data.errors[key]
                 }
-            })  
+            })
         }
     }
 }

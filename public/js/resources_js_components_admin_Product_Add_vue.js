@@ -70,14 +70,14 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Add',
   data: function data() {
     return {
-      title: null,
-      slug: null,
-      price: null,
+      title: '',
+      slug: '',
+      price: '',
       is_active: true,
-      preview_description: null,
-      detail_description: null,
+      preview_description: '',
+      detail_description: '',
       hit: false,
-      category_id: null,
+      category_id: '',
       allCategories: [],
       dropzone: null,
       errors: {

@@ -30,9 +30,9 @@ class Service{
             DB::beginTransaction();
             $coincidences = Category::where('slug', $data['slug'])->first();
 
-            /*if($coincidences->id !== $category->id) {
+            if($coincidences->id !== $category->id) {
                 return response()->json(['message' => 'Категория с таким символьным кодом уже существует'], 422);
-            }*/
+            }
             $category->update($data);
             DB::commit();
         }

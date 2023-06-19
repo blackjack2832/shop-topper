@@ -69,14 +69,14 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Edit',
   data: function data() {
     return {
-      title: null,
-      slug: null,
-      price: null,
+      title: '',
+      slug: '',
+      price: '',
       is_active: true,
-      preview_description: null,
-      detail_description: null,
+      preview_description: '',
+      detail_description: '',
       hit: false,
-      category_id: null,
+      category_id: '',
       allCategories: [],
       errors: {
         title: '',
@@ -102,7 +102,6 @@ __webpack_require__.r(__webpack_exports__);
     getProduct: function getProduct() {
       var _this2 = this;
       axios.get("/api/product/".concat(this.$route.params.id)).then(function (res) {
-        console.log(res.data.data);
         _this2.title = res.data.data.title;
         _this2.slug = res.data.data.slug;
         _this2.price = res.data.data.price;
@@ -114,6 +113,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateProduct: function updateProduct() {
+      var _this3 = this;
+      for (var key in this.errors) {
+        this.errors[key] = '';
+      }
       axios.patch("/api/product/".concat(this.$route.params.id), {
         title: this.title,
         slug: this.slug,
@@ -127,6 +130,10 @@ __webpack_require__.r(__webpack_exports__);
         _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
           name: 'admin.product.view'
         });
+      })["catch"](function (error) {
+        for (var _key in error.response.data.errors) {
+          _this3.errors[_key] = error.response.data.errors[_key];
+        }
       });
     },
     back: function back() {

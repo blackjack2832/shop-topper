@@ -56,14 +56,14 @@ export default {
 
     data() {
         return {
-            title: null,
-            slug: null,
-            price: null,
+            title: '',
+            slug: '',
+            price: '',
             is_active: true,
-            preview_description: null,
-            detail_description: null,
+            preview_description: '',
+            detail_description: '',
             hit: false,
-            category_id: null,
+            category_id: '',
             allCategories: [],
             errors: {
                 title: '',
@@ -90,7 +90,6 @@ export default {
 
         getProduct() {
             axios.get(`/api/product/${this.$route.params.id}`).then(res => {
-                console.log(res.data.data)
                 this.title = res.data.data.title
                 this.slug = res.data.data.slug
                 this.price = res.data.data.price
@@ -103,6 +102,10 @@ export default {
         },
 
         updateProduct() {
+            for (let key in this.errors) {
+                this.errors[key] = ''
+            }
+
             axios.patch(`/api/product/${this.$route.params.id}`, {
                 title: this.title,
                 slug: this.slug,
@@ -114,6 +117,10 @@ export default {
                 category_id: this.category_id
             }).then(res => {
                 router.push({name: 'admin.product.view'})
+            }).catch(error => {
+                for (let key in error.response.data.errors) {
+                    this.errors[key] = error.response.data.errors[key]
+                }
             })
         },
 
