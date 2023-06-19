@@ -25,8 +25,7 @@ class Cart {
         return session()->get('cart.totalQuantity');
     }
 
-    public function removeFromCart($product) {
-        $productId = $product['id'];
+    public function removeFromCart($productId) {
         $productFromCart = session()->get("cart.products.$productId");
 
         if (!empty($productFromCart)) {
