@@ -37,6 +37,9 @@ export default {
 
     mounted() {
         this.getAllProductsByCategory()
+
+        if(this.products.length <= this.limit)
+            this.hideButton = true
     },
 
     methods: {
