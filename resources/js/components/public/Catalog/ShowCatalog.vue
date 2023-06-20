@@ -8,23 +8,6 @@
                     <product-cart v-for="product in products" v-bind:key="product.id" :productProp="product"></product-cart>
                 </div>
             </div>
-            <!--<div class="catalog-elements">
-            <h1 class="catalog-section-title">Ноутбуки</h1>
-            <div class="catalog-elements-container">
-                <div class="catalog-element" v-for="product in products">
-                    <div class="add-to-favorite-icon" @click="addToFavorite"><img src="../../../../images/favorite.png" alt=""></div>
-                    <a :href="'/product/detail/' + product.id">
-                        <img class="catalog-element-image" :src="product.images[0].url" alt="">
-                        <div class="catalog-element-title">{{ product.title }}</div>
-                        <div class="catalog-element-description">{{ product.preview_description }}</div>
-                    </a>
-                    <a class="catalog-element-add-to-cart" href="">
-                        <div class="add-to-cart-icon"><img class="" src="../../../../images/cart.png" alt=""></div>
-                        <div class="catalog-element-price">120 000руб</div>
-                    </a>
-                </div>
-            </div>
-        </div>-->
         </div>
         <div v-if="hideButton == false" class="button-container">
             <a href="" @click.prevent="getMore(15)" class="button black-button">Загрузить ещё</a>
@@ -44,7 +27,7 @@ export default {
 
     data() {
         return {
-            limit: 15,
+            limit: 10,
             offset: 0,
             products: [],
             hideButton: false,

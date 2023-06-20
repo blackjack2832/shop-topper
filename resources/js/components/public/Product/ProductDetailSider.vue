@@ -44,7 +44,7 @@ export default {
             $(detailSubslider).slick({
                 vertical: true,
                 verticalSwiping: true,
-                slidesToShow: 8,
+                slidesToShow: 12,
                 asNavFor: '.product-detail-main-slider'
             })
 
