@@ -5109,7 +5109,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getAllProductsByCategory();
-    if (this.products.length <= this.limit) this.hideButton = true;
+    if (this.products.length < this.limit) this.hideButton = true;
   },
   methods: {
     addToFavorite: function addToFavorite() {
