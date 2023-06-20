@@ -12,6 +12,9 @@
                     <li class="nav-item mt-3">
                         <router-link :to="{name: 'admin.category.index'}">Категории</router-link>
                     </li>
+                    <li class="nav-item mt-3">
+                        <router-link :to="{name: 'admin.order.index'}">Заказы</router-link>
+                    </li>
                 </ul>
             </nav>
         </div>

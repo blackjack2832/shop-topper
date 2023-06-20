@@ -13,4 +13,12 @@ class Order extends Model
     public function buyer() {
         return $this->belongsTo(Buyer::class, 'buyer_id', 'id');
     }
+
+    public function address() {
+        return $this->belongsTo(AddressSliderImage::class, 'address_id', 'id');
+    }
+
+    public function items() {
+        return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
 }

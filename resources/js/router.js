@@ -49,6 +49,18 @@ export default new VueRouter({
                     name: 'admin.category.edit',
                 }
             ]
+        },
+        {
+            path: '/admin/order',
+            component: () => import('./components/admin/Order/Index'),
+            name: 'admin.order.index',
+            children: [
+                {
+                    path: '/admin/order/view',
+                    component: () => import('./components/admin/Order/View'),
+                    name: 'admin.order.view'
+                },
+            ]
         }
     ]
 })

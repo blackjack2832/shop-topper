@@ -43,3 +43,7 @@ Route::group(['namespace' => 'App\Http\Controllers\SiteControllers'], function()
 Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
     Route::post('/registration', Registration\StoreController::class);
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\Order'], function() {
+    Route::get('/order', AllController::class);
+});

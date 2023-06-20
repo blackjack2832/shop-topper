@@ -4880,6 +4880,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'MainSideBar'
@@ -6143,6 +6146,19 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
         return __webpack_require__.e(/*! import() */ "resources_js_components_admin_Category_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/Category/Edit */ "./resources/js/components/admin/Category/Edit.vue"));
       },
       name: 'admin.category.edit'
+    }]
+  }, {
+    path: '/admin/order',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_admin_Order_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/Order/Index */ "./resources/js/components/admin/Order/Index.vue"));
+    },
+    name: 'admin.order.index',
+    children: [{
+      path: '/admin/order/view',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_components_admin_Order_View_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/Order/View */ "./resources/js/components/admin/Order/View.vue"));
+      },
+      name: 'admin.order.view'
     }]
   }]
 }));
@@ -47022,6 +47038,19 @@ var render = function () {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item mt-3" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "admin.order.index" } } },
+                    [_vm._v("Заказы")]
+                  ),
+                ],
+                1
+              ),
             ]
           ),
         ]),
@@ -65209,7 +65238,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_admin_Product_Products_vue":1,"resources_js_components_admin_Product_Add_vue":1,"resources_js_components_admin_Product_View_vue":1,"resources_js_components_admin_Product_Edit_vue":1,"resources_js_components_admin_Category_Index_vue":1,"resources_js_components_admin_Category_Add_vue":1,"resources_js_components_admin_Category_View_vue":1,"resources_js_components_admin_Category_Edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_admin_Product_Products_vue":1,"resources_js_components_admin_Product_Add_vue":1,"resources_js_components_admin_Product_View_vue":1,"resources_js_components_admin_Product_Edit_vue":1,"resources_js_components_admin_Category_Index_vue":1,"resources_js_components_admin_Category_Add_vue":1,"resources_js_components_admin_Category_View_vue":1,"resources_js_components_admin_Category_Edit_vue":1,"resources_js_components_admin_Order_Index_vue":1,"resources_js_components_admin_Order_View_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
