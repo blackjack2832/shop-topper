@@ -11,6 +11,11 @@
 import router from "../../../router";
 export default {
     name: 'Index',
+    
+    mounted() {
+        router.push({name: 'admin.order.view'}).catch(error => {
+        })
+    }
 }
 </script>
 <style scoped></style>

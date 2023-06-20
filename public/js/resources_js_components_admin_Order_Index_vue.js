@@ -24,7 +24,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Index'
+  name: 'Index',
+  mounted: function mounted() {
+    _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      name: 'admin.order.view'
+    })["catch"](function (error) {});
+  }
 });
 
 /***/ }),

@@ -25,6 +25,10 @@ class IndexController extends Controller
 
         if(!empty($data['category'])) {
             $category = Category::where('slug', $data['category'])->first();
+
+            if(empty($category))
+                return response()->json(['message' => 'Категории с таким символьным кодом не существует'], 404);
+            
             $query->where('category_id', $category->id);
             $result['category'] = $category;
         }
