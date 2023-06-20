@@ -28,6 +28,7 @@ class StoreRequest extends FormRequest
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'phone_number' => 'required|string',
+            'address_id' => 'required'
         ];
     }
 
@@ -37,7 +38,8 @@ class StoreRequest extends FormRequest
             'email.required' => 'Email - обязательное поле',
             'first_name.required' => 'Имя - обязательное поле',
             'last_name.required' => 'Фамилия - обязательное поле',
-            'phone_number.required' => 'Номер телефона - обязательное поле'
+            'phone_number.required' => 'Номер телефона - обязательное поле',
+            'address_id.required' => 'Адрес магазина - обязательное поле'
         ];
     }
 }

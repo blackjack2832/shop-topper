@@ -5247,12 +5247,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'MakeOrder',
   data: function data() {
     return {
+      selectedShop: {},
+      shops: [],
       email: '',
       first_name: '',
       last_name: '',
@@ -5270,6 +5280,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var phoneMask = new Inputmask("+9 (999) 999-99-99");
     phoneMask.mask($(".input-phone"));
+    this.getShops();
   },
   methods: {
     store: function store() {
@@ -5282,8 +5293,10 @@ __webpack_require__.r(__webpack_exports__);
         first_name: this.first_name,
         last_name: this.last_name,
         comment: this.comment,
-        phone_number: this.phone_number
+        phone_number: this.phone_number,
+        address_id: this.selectedShop.id
       }).then(function (res) {
+        console.log(res);
         var orderId = res.data.id;
         if (orderId != 0) {
           window.location.href = "/order/".concat(orderId);
@@ -5294,6 +5307,17 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors[_key] = err.response.data.errors[_key];
         }
       });
+    },
+    getShops: function getShops() {
+      var _this2 = this;
+      axios.get('/api/images/address-slider').then(function (res) {
+        _this2.shops = res.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    selectShop: function selectShop(shop) {
+      this.selectedShop = shop;
     }
   }
 });
@@ -47463,6 +47487,64 @@ var render = function () {
         _c("div", { staticClass: "order-danger" }, [
           _vm._v(_vm._s(_vm.errors.last_name[0])),
         ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "order-input-container dropdown" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedShop.address,
+              expression: "selectedShop.address",
+            },
+          ],
+          staticClass: "dropdown-toggle",
+          attrs: {
+            type: "text",
+            id: "dropdownMenuButton",
+            readonly: "",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false",
+          },
+          domProps: { value: _vm.selectedShop.address },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.selectedShop, "address", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "" } }, [_vm._v("Выберите магазин")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "dropdownMenuButton" },
+          },
+          _vm._l(_vm.shops, function (shop) {
+            return _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "#" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.selectShop(shop)
+                  },
+                },
+              },
+              [_vm._v(_vm._s(shop.address))]
+            )
+          }),
+          0
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "order-input-container" }, [

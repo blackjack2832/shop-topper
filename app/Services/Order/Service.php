@@ -19,9 +19,10 @@ class Service{
 
             if (empty($cart))
                 return response()->json(['message' => 'Корзина пустая'], 422);
-
+            $addressId = $data['address_id'];
+            unset($data['address_id']);
             $buyer = Buyer::firstOrCreate(['email' => $data['email']], $data);
-            $order = $this->addOrder($cart, $buyer['id']);
+            $order = $this->addOrder($cart, $buyer['id'], $addressId);
             $this->addOrderItems($cart, $order['id']);
             DB::commit();
             return $order;
@@ -34,12 +35,13 @@ class Service{
         
     }
 
-    public function addOrder($cart, $buyerId) {
+    public function addOrder($cart, $buyerId, $addressId) {
         $result = Order::create([
             'buyer_id' => $buyerId,
             'total_price' => $cart['totalPrice'],
             'payed' => 0,
             'picked_up' => 0,
+            'address_id' => $addressId
         ]);
 
         return $result;

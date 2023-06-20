@@ -37,8 +37,8 @@
                         SHOP TOPPER
                     </a>
                     <div class="header-icons">
-                        <a href="" class="header-icon icon-user"></a>
-                        <a href="../favorite.html" class="header-icon icon-favorite-products"></a>
+                        <a href="/login" class="header-icon icon-user"></a>
+                        <a href="" class="header-icon icon-favorite-products"></a>
                         <cart-menu-item></cart-menu-item>
                     </div>
                 </div>
@@ -66,6 +66,9 @@
             </div>
         </footer>
     </div>
+    <script src=" {{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
 

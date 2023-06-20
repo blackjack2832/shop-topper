@@ -51,6 +51,10 @@ class Cart {
         return session()->get('cart.totalQuantity');
     }
 
+    public function clearCart() {
+        session()->forget("cart");
+    }
+
 
     /**
      * Метод для пересчёта итоговой цены в корзине

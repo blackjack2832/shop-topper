@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddAddressToOrdersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->unsignedBigInteger('address_id');
+            $table->index('address_id', 'order_address_idx');
+            $table->foreign('address_id', 'order_address_fk')->on('address_slider_images')->references('id')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
+    }
+}
