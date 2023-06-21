@@ -41,10 +41,6 @@ export default {
 
     methods: {
 
-        addToFavorite() {
-            alert("Дарова");
-        },
-
         getAllProductsByCategory() {
             let currentUrl = window.location.href
             let category = currentUrl.split("/").reverse()[0]

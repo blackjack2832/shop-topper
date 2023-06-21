@@ -5111,9 +5111,6 @@ __webpack_require__.r(__webpack_exports__);
     this.getAllProductsByCategory();
   },
   methods: {
-    addToFavorite: function addToFavorite() {
-      alert("Дарова");
-    },
     getAllProductsByCategory: function getAllProductsByCategory() {
       var _this = this;
       var currentUrl = window.location.href;

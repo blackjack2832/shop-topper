@@ -59,9 +59,9 @@
             <div class="container">
                 <div class="footer-social-networks-title">Мы в социальных сетях</div>
                 <div class="footer-social-networks-block">
-                    <a href="" class="social-network-block"><img src="../img/svg/vk.svg" alt=""></a>
-                    <a href="" class="social-network-block"><img src="../img/svg/zen.svg" alt=""></a>
-                    <a href="" class="social-network-block"><img src="../img/svg/telegram.svg" alt=""></a>
+                    <a href="https://vk.com/public221214597" class="social-network-block"><img src="../img/svg/vk.svg" alt=""></a>
+                    <a href="https://dzen.ru/profile/editor/id/649296cc584cca03fc454cdc" class="social-network-block"><img src="../img/svg/zen.svg" alt=""></a>
+                    <a href="https://t.me/+2v7yV1WdSaA5NDZi" class="social-network-block"><img src="../img/svg/telegram.svg" alt=""></a>
                 </div>
             </div>
         </footer>
